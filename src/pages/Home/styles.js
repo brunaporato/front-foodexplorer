@@ -49,7 +49,8 @@ export const Container = styled.div`
 
     .cards {
       display: flex;
-      overflow-y: scroll;
+      overflow-x: scroll;
+      /* overflow-x: hidden; */
     }
   }
 `

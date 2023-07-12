@@ -8,7 +8,7 @@ import polygon from "../../assets/polygon.svg"
 export function Header() {
   const user = {
     name: 'Bruna',
-    isAdmin: 2
+    isAdmin: 1
   }
 
   const isAdmin = user.isAdmin === 1
