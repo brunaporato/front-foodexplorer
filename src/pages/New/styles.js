@@ -95,6 +95,18 @@ export const Container = styled.div`
           right: 1.6rem;
         }
       }
+
+      .ingredients {
+        background: ${({ theme }) => theme.colors.dark_800};
+        border-radius: .5rem;
+
+        padding: .4rem .8rem;
+        display: flex;
+        gap: 1.6rem;
+
+  
+        width: 100%;
+      }
       
       > textarea {
         background: ${({ theme }) => theme.colors.dark_800};

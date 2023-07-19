@@ -4,6 +4,7 @@ import { InputDishInfo } from "../../components/InputDishInfo";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { Button } from "../../components/Button";
+import { NewIngredient } from "../../components/NewIngredient";
 
 import { FiChevronLeft, FiChevronDown, FiUpload } from "react-icons/fi";
 
@@ -46,7 +47,10 @@ export function New() {
 
         <div className="input-wrapper">
           <label htmlFor="ingredients">Ingredientes</label>
-          <InputDishInfo id="ingredients" type="text" />
+          <div className="ingredients">
+            <NewIngredient value="feijão" />
+            <NewIngredient value="feijão" isNew/>
+          </div>
         </div>
 
         <div className="input-wrapper">
