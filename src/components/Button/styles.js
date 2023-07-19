@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.button`
   width: 100%;
-  height: 3.5rem;
 
   background: ${({ theme }) => theme.colors.tomato_100};
   border: none;
@@ -11,6 +10,7 @@ export const Container = styled.button`
 
   font-size: 1.4rem;
   font-weight: 500;
+  line-height: 2.4rem;
 
   display: flex;
   align-items: center;

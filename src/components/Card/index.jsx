@@ -11,7 +11,7 @@ export function Card() {
 
   const user = {
     name: 'Bruna',
-    isAdmin: 1
+    isAdmin: 2
   }
 
   const isAdmin = user.isAdmin === 1

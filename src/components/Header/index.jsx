@@ -1,9 +1,9 @@
 import { Container, Logo, Menu } from "./styles";
 
-import { FiMenu } from 'react-icons/fi'
-import { PiReceipt } from 'react-icons/pi'
+import { FiMenu } from 'react-icons/fi';
+import { PiReceipt } from 'react-icons/pi';
 
-import polygon from "../../assets/polygon.svg"
+import polygon from "../../assets/polygon.svg";
 
 export function Header() {
   const user = {

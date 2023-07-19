@@ -11,7 +11,7 @@ export const Container = styled.div`
 
   background-color: ${({ theme }) => theme.colors.dark_600};
 
-  position: sticky;
+  position: absolute;
   bottom: 0;
 
   > div {

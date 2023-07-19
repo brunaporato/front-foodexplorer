@@ -2,8 +2,14 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
+  min-height: 100vh;
 
-  .top {
+  position: relative;
+
+  .content-wrapper {
+    padding-bottom: 10.1rem;
+
+    .top {
     background: ${({ theme }) => theme.colors.gradient_200};
     height: 12rem;
 
@@ -38,6 +44,7 @@ export const Container = styled.div`
     }
   }
 
+
   .meal {
     margin-left: 2.4rem;
     
@@ -52,5 +59,6 @@ export const Container = styled.div`
       overflow-x: scroll;
       /* overflow-x: hidden; */
     }
-  }
+    }
+}
 `
