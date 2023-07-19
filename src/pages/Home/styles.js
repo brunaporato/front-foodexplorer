@@ -57,7 +57,17 @@ export const Container = styled.div`
     .cards {
       display: flex;
       overflow-x: scroll;
-      /* overflow-x: hidden; */
+
+      &::-webkit-scrollbar-track {
+        background-color: ${({ theme }) => theme.colors.dark_400};
+      }
+      &::-webkit-scrollbar {
+          height: 7px;
+      }
+      &::-webkit-scrollbar-thumb {
+          background: ${({ theme }) => theme.colors.dark_1000};
+          border-radius: .8rem;
+      }
     }
     }
 }

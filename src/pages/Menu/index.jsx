@@ -1,5 +1,7 @@
 import { Container } from "./styles";
 
+import { Link } from "react-router-dom";
+
 import { PiX } from "react-icons/pi";
 import { Input } from "../../components/Input";
 import { Footer } from "../../components/Footer";
@@ -16,16 +18,16 @@ export function Menu() {
     <Container>
      <div className="menu">
      <div className="top">
-        <PiX size={23}/>
+        <Link to="/"><PiX size={23}/></Link>
         <h3>Menu</h3>
       </div>
       <Input placeholder="Busque por pratos ou ingredientes"/>
       <ul>
         <li>
           { isAdmin ?
-          <a>
+          <Link to="/new">
             Novo prato
-          </a> : ''
+          </Link> : ''
           }
         </li>
         <li>

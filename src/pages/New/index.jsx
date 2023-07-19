@@ -1,5 +1,7 @@
 import { Container } from "./styles";
 
+import { Link } from "react-router-dom";
+
 import { InputDishInfo } from "../../components/InputDishInfo";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
@@ -20,7 +22,7 @@ export function New() {
     <Container>
       <Header />
       <div className="page">
-        <a href="#"> 	<FiChevronLeft size={22} /> voltar</a>
+        <Link to="/"> 	<FiChevronLeft size={22} /> voltar</Link>
         <h1>Novo prato</h1>
         <form action="">
           <div className="input-wrapper">

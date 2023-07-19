@@ -15,10 +15,10 @@ export function Header() {
 
   return (
     <Container>
-          <Menu>
+          <Menu to="/menu">
             <FiMenu />
           </Menu>
-          <Logo>
+          <Logo to="/">
             <img src={polygon} alt="Logo" />
             <h1>food explorer</h1>
             <span>{ isAdmin ? `admin` : ''}</span>

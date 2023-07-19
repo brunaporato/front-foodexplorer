@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { Link } from "react-router-dom";
+
 export const Container = styled.div`
   width: 100%;
 
@@ -11,8 +13,7 @@ export const Container = styled.div`
   justify-content: space-between;
 ` 
 
-export const Menu = styled.button`
-  border: none;
+export const Menu = styled(Link)`
   background: none;
   width: 3.2rem;
   height: 3.2rem;
@@ -43,11 +44,16 @@ export const Menu = styled.button`
     top: -9px;
     right: -9px;
   }
+
+  &:hover {
+    filter: none;
+  }
 `
 
-export const Logo = styled.button`
+export const Logo = styled(Link)`
   background: none;
-  border: none;
+
+  color: ${({ theme }) => theme.colors.light_100};
 
   display: flex;
   align-items: center;
@@ -65,5 +71,9 @@ export const Logo = styled.button`
     font-size: 1.2rem;
     font-weight: 400;
     color: ${({ theme }) => theme.colors.cake_200};
+  }
+
+  &:hover {
+    filter: none;
   }
 `
