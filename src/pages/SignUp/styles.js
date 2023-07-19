@@ -31,7 +31,7 @@ export const Container = styled.div`
     }
   }
 
-  .form {
+  form {
     width: 100%;
   }
 

@@ -6,10 +6,10 @@ export const Container = styled.div`
 
   width: fit-content;
 
-  background-color: ${({ theme, isNew }) => { isNew ? "none" : theme.colors.light_600}};
-  color: ${({ theme, isNew }) => { isNew ? theme.colors.light_500 : theme.colors.light_100}};
+  background-color: ${({ theme, $isNew }) => { $isNew ? "none" : theme.colors.light_600 }};
+  color: ${({ theme, $isNew }) => { $isNew ? theme.colors.light_500 : theme.colors.light_100 }};
 
-  border: ${({ theme, isNew }) => { isNew ? `1px dashed ${theme.colors.light_500}` : "none"}};
+  border: ${({ theme, $isNew }) => { $isNew ? `1px dashed ${theme.colors.light_500}` : "none" }};
   border-radius: .8rem;
 
   padding: 1rem 1.6rem;
@@ -18,6 +18,20 @@ export const Container = styled.div`
   button {
     background: none;
     border: none;
+
+    width: 2rem;
+    height: 2rem;
+
+    display: flex;
+    align-items: center;
+  }
+
+  .button-delete {
+    color: ${({ theme }) => theme.colors.light_100};
+  }
+
+  .button-add {
+    color: ${({ theme }) => theme.colors.light_500};
   }
 
   input {

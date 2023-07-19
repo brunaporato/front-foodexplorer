@@ -30,12 +30,17 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.colors.light_300};
     }
 
-    .input-wrapper {
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 2.4rem;
+
+      .input-wrapper {
       display: flex;
       flex-direction: column;
       gap: 1.6rem;
 
-      label {
+      label, p {
       color: ${({ theme }) => theme.colors.light_400};
       font-family: 'Roboto', serif;
       }
@@ -124,6 +129,7 @@ export const Container = styled.div`
           color: ${({ theme }) => theme.colors.light_500};
         }
       }
+    }
     }
 
     }
