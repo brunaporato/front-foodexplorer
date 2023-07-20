@@ -7,7 +7,7 @@ export const Container = styled.input`
 
   width: 100%;
 
-  padding: 1.2rem 1.4rem;
+  padding: 3rem 1.4rem;
 
   &::placeholder {
     font-family: 'Roboto', serif;
