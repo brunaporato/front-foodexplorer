@@ -9,14 +9,20 @@ import { Button } from "../../components/Button";
 import { NewIngredient } from "../../components/NewIngredient";
 
 import { FiChevronLeft, FiChevronDown, FiUpload } from "react-icons/fi";
+import { useState } from "react";
 
 export function New() {
-  // const user = {
-  //   name: 'Bruna',
-  //   isAdmin: 1
-  // };
+  const [ingredients, setIngredients] = useState([]);
+  const [newIngredient, setNewIngredient] = useState("");
 
-  // const isAdmin = user.isAdmin === 1
+  function handleAddIngredient() {
+    setIngredients(prevState => [...prevState, newIngredient]);
+    setNewIngredient("");
+  }
+
+  function handleRemoveIngredient(deleted) {
+    setIngredients(prevState => prevState.filter(ingredient => ingredient != deleted));
+  }
 
   return (
     <Container>
@@ -50,8 +56,22 @@ export function New() {
           <div className="input-wrapper">
             <p>Ingredientes</p>
             <div className="ingredients">
-              <NewIngredient value="feijão" />
-              <NewIngredient $isNew placeholder="Adicionar"/>
+              {
+                ingredients.map((ingredient, index) => (
+                  <NewIngredient
+                    key={String(index)}
+                    value={ingredient}
+                    onClick={() => {handleRemoveIngredient(ingredient)}} 
+                  />
+                ))
+              }
+              <NewIngredient
+                $isNew
+                placeholder="Adicionar"
+                value={newIngredient}
+                onChange={e => setNewIngredient(e.target.value)}
+                onClick={handleAddIngredient}
+              />
             </div>
           </div>
 

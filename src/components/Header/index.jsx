@@ -4,14 +4,12 @@ import { FiMenu } from 'react-icons/fi';
 import { PiReceipt } from 'react-icons/pi';
 
 import polygon from "../../assets/polygon.svg";
+import { useAuth } from "../../hooks/auth";
 
 export function Header() {
-  const user = {
-    name: 'Bruna',
-    isAdmin: 1
-  }
+  const { user } = useAuth();
 
-  const isAdmin = user.isAdmin === 1
+  const isAdmin = user.isAdmin === 1;
 
   return (
     <Container>
@@ -21,7 +19,7 @@ export function Header() {
           <Logo to="/">
             <img src={polygon} alt="Logo" />
             <h1>food explorer</h1>
-            <span>{ isAdmin ? `admin` : ''}</span>
+            <span>{ isAdmin ? `admin` : "" }</span>
           </Logo>
           { isAdmin ? <div></div> :
             <Menu>

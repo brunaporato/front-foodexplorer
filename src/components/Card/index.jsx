@@ -6,16 +6,11 @@ import { Button } from "../Button";
 import { FiPlus, FiMinus } from "react-icons/fi";
 import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
 import { PiPencilSimple } from "react-icons/pi";
+import { useAuth } from "../../hooks/auth";
 
 export function Card() {
-
-  const user = {
-    name: 'Bruna',
-    isAdmin: 2
-  }
-
-  const isAdmin = user.isAdmin === 1
-
+  const { user } = useAuth();
+  const isAdmin = user.isAdmin === 1;
 
   return (
     <Container>

@@ -12,6 +12,7 @@ export const Container = styled.div`
     .top {
     background: ${({ theme }) => theme.colors.gradient_200};
     height: 12rem;
+    min-width: 31rem;
 
     margin: 4.4rem 1.6rem 6.2rem 3.6rem;
     position: relative;

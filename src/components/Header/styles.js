@@ -28,6 +28,8 @@ export const Menu = styled(Link)`
   > span {
     position: absolute;
     
+    color: ${({ theme }) => theme.colors.light_100};
+
     background-color: ${({ theme }) => theme.colors.tomato_100};
     font-size: 1.4rem;
     font-weight: 500;

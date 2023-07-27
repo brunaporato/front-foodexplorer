@@ -5,6 +5,7 @@ export const Container = styled.div`
   align-items: center;
 
   max-width: 13rem;
+  min-width: 8rem;
 
   background-color: ${({ theme, $isNew }) => $isNew ? "none" : theme.colors.light_600};
 
