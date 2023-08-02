@@ -30,7 +30,6 @@ export function EditDish() {
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
   const [name, setName] = useState(String(data.name));
-  console.log(data.name)
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");

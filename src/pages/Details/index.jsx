@@ -1,6 +1,6 @@
 import { Container } from "./styles";
 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import { FiChevronLeft, FiPlus, FiMinus } from "react-icons/fi";
@@ -20,6 +20,11 @@ export function Details() {
   const isAdmin = user.isAdmin === 1
 
   const params = useParams();
+  const navigate = useNavigate();
+
+  function handleEditDish() {
+    navigate(`/editdish/${params.id}`)
+  }
 
   useEffect(() => {
     async function fetchDish() {
@@ -52,7 +57,10 @@ export function Details() {
         }
         { isAdmin ?
           <section>
-            <Button title="Editar prato" />
+            <Button
+              title="Editar prato"
+              onClick={handleEditDish}
+            />
           </section> :
           <section>
             <div className="items">
