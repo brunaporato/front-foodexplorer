@@ -22,7 +22,6 @@ export function New() {
   const [image, setImage] = useState(null);
 
   const navigate = useNavigate();
-  let response;
 
   function handleAddIngredient() {
     setIngredients(prevState => [...prevState, newIngredient]);
@@ -33,28 +32,31 @@ export function New() {
     setIngredients(prevState => prevState.filter(ingredient => ingredient != deleted));
   }
 
-  async function handleImage(e) {
+  function handleImage(e) {
     const file = e.target.files[0];
     setImage(file);
-
-    const fileUploadForm = new FormData();
-    fileUploadForm.append("image", file);
-
-    response = await api.patch("/foodimage", fileUploadForm);
   }
 
   async function handleNewDish() {
-    // return console.log(image)
 
     try {
-      await api.post("/foods", {
+      const response = await api.post("/foods", {
         name,
         category,
         price,
         description,
-        ingredients,
-        image: response.data.image
+        ingredients
       });
+
+
+      const food_id = response.data;
+
+      if(image) {
+        const fileUploadForm = new FormData();
+        fileUploadForm.append("image", image);
+
+        await api.patch(`/foodimage/${food_id}`, fileUploadForm);
+      }
 
       alert("Prato criado com sucesso");
       navigate("/");

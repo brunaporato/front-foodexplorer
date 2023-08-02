@@ -1,6 +1,7 @@
 import { Container } from "./styles";
 
-import dishBig from "../../assets/dishBig.png";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import { FiChevronLeft, FiPlus, FiMinus } from "react-icons/fi";
 
@@ -9,31 +10,46 @@ import { Header } from "../../components/Header";
 import { ButtonIcon } from "../../components/ButtonIcon";
 import { Footer } from "../../components/Footer";
 import { Button } from "../../components/Button";
+import { useAuth } from "../../hooks/auth";
+import { api } from "../../services/api";
 
 export function Details() {
-  const user = {
-    name: 'Bruna',
-    isAdmin: 1
-  };
+  const [data, setData] = useState([]);
 
+  const { user } = useAuth();
   const isAdmin = user.isAdmin === 1
+
+  const params = useParams();
+
+  useEffect(() => {
+    async function fetchDish() {
+      const response = await api.get(`/foods/${params.id}`);
+      setData(response.data);
+    }
+    fetchDish();
+  }, [params.id]);
+  
+  const image = `${api.defaults.baseURL}/files/${data.image}`
 
   return (
     <Container>
       <Header />
       <div className="page">
-        <a href="#"> 	<FiChevronLeft size={32} /> voltar</a>
-        <img src={dishBig} alt="Imagem do prato" />
-        <h1>Salada Ravanello</h1>
-        <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.</p>
-        <div className="ingredients">
-          <Ingredient title="alface" />
-          <Ingredient title="cebola" />
-          <Ingredient title="pão naan" />
-          <Ingredient title="pepino" />
-          <Ingredient title="rabanete" />
-          <Ingredient title="tomate" />
-        </div>
+        <a href="/"> 	<FiChevronLeft size={32} /> voltar</a>
+        <img src={image} alt="Imagem do prato" />
+        <h1>{data.name}</h1>
+        <p>{data.description}</p>
+        {data.ingredients &&
+          <div className="ingredients">
+            { data.ingredients.map(ingredient => (
+              <Ingredient
+               key={String(ingredient.id)}
+               title={ingredient.name}
+              />
+            ))
+            }
+          </div>
+        }
         { isAdmin ?
           <section>
             <Button title="Editar prato" />

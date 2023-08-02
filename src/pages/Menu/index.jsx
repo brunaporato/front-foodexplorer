@@ -1,5 +1,6 @@
 import { Container } from "./styles";
 
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { PiX } from "react-icons/pi";
@@ -9,6 +10,7 @@ import { Footer } from "../../components/Footer";
 import { useAuth } from "../../hooks/auth";
 
 export function Menu() {
+  const [search, setSearch] = useState("");
   const { signOut, user } = useAuth();
   const navigate = useNavigate();
 
@@ -18,6 +20,13 @@ export function Menu() {
     navigate("/")
     signOut()
   }
+
+  function handleSearch(e) {
+    if(e.key === 'Enter') {
+      setSearch(e.target.value)
+    }
+  }
+
   
   return(
     <Container>
@@ -26,7 +35,10 @@ export function Menu() {
         <Link to="/"><PiX size={23}/></Link>
         <h3>Menu</h3>
       </div>
-      <Input placeholder="Busque por pratos ou ingredientes"/>
+      <Input
+        placeholder="Busque por pratos ou ingredientes"
+        onKeyDown={handleSearch}
+      />
       <ul>
         <li>
           { isAdmin ?

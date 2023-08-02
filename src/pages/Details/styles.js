@@ -12,6 +12,12 @@ export const Container = styled.div`
 
     /* padding-bottom: 9rem; */
 
+    img {
+      width: 26.4rem;
+      height: 26.4rem;
+      border-radius: 50%;
+    }
+
 
     > a {
       color: ${({ theme }) => theme.colors.light_300};

@@ -1,4 +1,4 @@
-import { Container, Logo, Menu } from "./styles";
+import { Container, Logo, Menu, Hamburguer } from "./styles";
 
 import { FiMenu } from 'react-icons/fi';
 import { PiReceipt } from 'react-icons/pi';
@@ -13,9 +13,9 @@ export function Header() {
 
   return (
     <Container>
-          <Menu to="/menu">
+          <Hamburguer to="/menu" className="">
             <FiMenu />
-          </Menu>
+          </Hamburguer>
           <Logo to="/">
             <img src={polygon} alt="Logo" />
             <h1>food explorer</h1>
@@ -27,7 +27,6 @@ export function Header() {
               <span>0</span>
             </Menu>
           }
-        
     </Container>
   )
 }

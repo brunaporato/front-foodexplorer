@@ -23,6 +23,7 @@ export const Container = styled.div`
   > img {
     width: 8.8rem;
     height: 8.8rem;
+    border-radius: 50%;
   }
 
   > p {

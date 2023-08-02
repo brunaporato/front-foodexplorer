@@ -1,22 +1,32 @@
 import { Container } from "./styles";
 
-import Dish from "../../assets/Dish.png";
 import { Button } from "../Button";
 
 import { FiPlus, FiMinus } from "react-icons/fi";
 import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
 import { PiPencilSimple } from "react-icons/pi";
 import { useAuth } from "../../hooks/auth";
+import { api } from "../../services/api";
 
-export function Card() {
+import { useNavigate } from "react-router-dom";
+
+export function Card({ data, ...rest }) {
   const { user } = useAuth();
   const isAdmin = user.isAdmin === 1;
 
+  const image = `${api.defaults.baseURL}/files/${data.image}`
+  
+  const navigate = useNavigate();
+
+  function handleDishDetails() {
+    navigate(`/foods/${data.id}`)
+  }
+
   return (
-    <Container>
-      <img src={Dish} alt="Imagem do prato" />
-      <p>Suco de maracujá &gt;</p>
-      <span>R$ 13,97</span>
+    <Container {...rest}>
+      <img src={image} alt="Imagem do prato" />
+      <p onClick={handleDishDetails}>{data.name} &gt;</p>
+      <span>R$ {data.price}</span>
       { isAdmin ? '' :
       <section>
         <button><FiMinus size={24} /></button>
