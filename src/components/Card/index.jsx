@@ -22,6 +22,10 @@ export function Card({ data, ...rest }) {
     navigate(`/foods/${data.id}`)
   }
 
+  function handleEditDish() {
+    navigate(`/editdish/${data.id}`)
+  }
+
   return (
     <Container {...rest}>
       <img src={image} alt="Imagem do prato" />
@@ -40,7 +44,11 @@ export function Card({ data, ...rest }) {
       }
       <div className="iconTop">
       {
-        isAdmin ? <PiPencilSimple size={28} />
+        isAdmin ?
+        <PiPencilSimple
+          size={28}
+          onClick={handleEditDish}
+        />
         : 
         <BsSuitHeart size={28} />
       }

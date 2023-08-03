@@ -68,8 +68,8 @@ export const Container = styled.div`
 
   .iconTop {
     position: absolute;
-    top: 1.6rem;
-    right: 1.6rem;
+    top: .5rem;
+    right: .5rem;
     cursor: pointer;
     transition: filter .3s;
 

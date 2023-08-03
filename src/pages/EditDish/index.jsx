@@ -17,19 +17,19 @@ import { api } from "../../services/api";
 export function EditDish() {
   const [data, setData] = useState([]);
   const params = useParams();
- 
-  useEffect(() => {
-    async function fetchDish() {
-      const response = await api.get(`/foods/${params.id}`);
-      setData(response.data);
-    }
-    fetchDish();
-  }, [params.id]);
-  
 
+  async function handleDelete() {
+    const confirm = window.confirm("Deseja remover o prato?");
+
+    if(confirm) {
+      await api.delete(`/foods/${params.id}`);
+      navigate("/");
+    }
+  }
+  
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
-  const [name, setName] = useState(String(data.name));
+  const [dish, setDish] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
@@ -82,6 +82,24 @@ export function EditDish() {
 
   }
 
+
+  useEffect(() => {
+    async function fetchDish() {
+      const response = await api.get(`/foods/${params.id}`);
+      setData(response.data);
+    }
+    fetchDish();
+  }, [params.id]);
+
+
+  useEffect(() => {
+    setDish(data.name);
+    setCategory(data.category);
+    setPrice(data.price);
+    setIngredients(data.ingredients);
+    setDescription(data.description);
+  }, [data]);
+
   return (
     <Container>
       <Header />
@@ -106,8 +124,8 @@ export function EditDish() {
               id="name"
               type="text"
               placeholder="Ex.: Salada Ceasar"
-              value={name}
-              onChange={e => setName(e.target.value)}
+              value={dish}
+              onChange={e => setDish(e.target.value)}
             />
           </div>
 
@@ -117,7 +135,7 @@ export function EditDish() {
               <select
                 id="category"
                 onChange={e => setCategory(e.target.value)}
-                value={data.category}
+                value={category}
               >
                 <option value=""></option>
                 <option value="Refeição">Refeição</option>
@@ -130,11 +148,11 @@ export function EditDish() {
           <div className="input-wrapper">
             <p>Ingredientes</p>
             <div className="ingredients">
-              {
+              { ingredients &&
                 ingredients.map((ingredient, index) => (
                   <NewIngredient
                     key={String(index)}
-                    value={ingredient}
+                    value={ingredient.name}
                     onClick={() => {handleRemoveIngredient(ingredient)}} 
                   />
                 ))
@@ -155,7 +173,7 @@ export function EditDish() {
               id="price"
               type="number"
               placeholder="R$00,00"
-              value={data.price}
+              value={price}
               onChange={e => setPrice(e.target.value)}
             />
           </div>
@@ -165,7 +183,7 @@ export function EditDish() {
             <textarea
               id="description"
               placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
-              value={data.description}
+              value={description}
               onChange={e => setDescription(e.target.value)}
             />
           </div>
@@ -174,7 +192,7 @@ export function EditDish() {
           <Button
             className="delete"
             title="Excluir prato"
-            onClick={handleUpdateDish}
+            onClick={handleDelete}
           />
           <Button
             title="Salvar alterações"
