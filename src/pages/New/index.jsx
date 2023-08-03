@@ -11,8 +11,11 @@ import { NewIngredient } from "../../components/NewIngredient";
 import { FiChevronLeft, FiChevronDown, FiUpload } from "react-icons/fi";
 import { useState } from "react";
 import { api } from "../../services/api";
+import { useEffect } from "react";
 
 export function New() {
+  const [dbCategory, setDbCategory] = useState([]);
+
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
   const [name, setName] = useState("");
@@ -70,6 +73,15 @@ export function New() {
 
   }
 
+  useEffect(() => {
+    async function fetchCategories() {
+      const response = await api.get("/categories");
+      setDbCategory(response.data);
+    }
+
+    fetchCategories();
+  }, [])
+
   return (
     <Container>
       <Header />
@@ -106,8 +118,15 @@ export function New() {
                 onChange={e => setCategory(e.target.value)}
               >
                 <option value=""></option>
-                <option value="Refeição">Refeição</option>
-                <option value="Snack">Snack</option>
+                { dbCategory.map((category, index) => (
+                  <option
+                    key={index}
+                    value={category.name}
+                  >
+                    {category.name}
+                  </option>
+                  ))
+                }
               </select>
               <label className="arrowDown" htmlFor="category"><FiChevronDown size={24} /></label>
             </div>

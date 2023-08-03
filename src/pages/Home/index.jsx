@@ -9,6 +9,7 @@ import { api } from "../../services/api";
 import { useState, useEffect } from "react";
 
 export function Home() {
+  const [categories, setCategories] = useState([]);
   const [dish, setDish] = useState([]);
   const name = "";
   const ing = "";
@@ -18,7 +19,15 @@ export function Home() {
     setDish(response.data);
   }
 
-  useEffect(() => {fetchDishes()}, [])
+  async function fetchCategories() {
+    const response = await api.get("/categories");
+    setCategories(response.data);
+  }
+
+  useEffect(() => {fetchDishes()}, []);
+  useEffect(() => {
+    fetchCategories();
+  }, [])
   
   return(
     <Container>
@@ -31,23 +40,24 @@ export function Home() {
             <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
           </div>
         </div>
-          <section className="meal">
-            <h2>Refeições</h2>
-            <div className="cards">
-             { dish.map(dish => (
-               <Card
-                key={String(dish.id)}
-                data={dish}
-               />
-             ))
-              }
-            </div>
-          </section>
-          <section className="meal">
-            <h2>Pratos principais</h2>
-            <div className="cards">
-            </div>
-          </section>
+          {
+          categories.map((category, index) => (
+            <section className="meal" key={index}>
+              <h2>{category.name}</h2>
+              <div className="cards">
+              {
+                dish.filter(dish => dish.category == category.name).map(dish => (
+                <Card
+                  key={String(dish.id)}
+                  data={dish}
+                />
+              )
+              )
+                }
+              </div>
+            </section>
+          ))
+          }
       </div>
       <Footer />
     </Container>
