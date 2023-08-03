@@ -29,8 +29,9 @@ export function EditDish() {
   
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
-  const [dish, setDish] = useState("");
+  const [name, setName] = useState("");
   const [category, setCategory] = useState("");
+  const [dbCategory, setDbCategory] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
@@ -89,11 +90,18 @@ export function EditDish() {
       setData(response.data);
     }
     fetchDish();
+
+    async function fetchCategories() {
+      const response = await api.get("/categories");
+      setDbCategory(response.data);
+    }
+
+    fetchCategories();
   }, [params.id]);
 
 
   useEffect(() => {
-    setDish(data.name);
+    setName(data.name);
     setCategory(data.category);
     setPrice(data.price);
     setIngredients(data.ingredients);
@@ -124,8 +132,8 @@ export function EditDish() {
               id="name"
               type="text"
               placeholder="Ex.: Salada Ceasar"
-              value={dish}
-              onChange={e => setDish(e.target.value)}
+              value={name}
+              onChange={e => setName(e.target.value)}
             />
           </div>
 
@@ -135,11 +143,17 @@ export function EditDish() {
               <select
                 id="category"
                 onChange={e => setCategory(e.target.value)}
-                value={category}
               >
-                <option value=""></option>
-                <option value="Refeição">Refeição</option>
-                <option value="Snack">Snack</option>
+                <option value={data.category}>{data.category}</option>
+                { dbCategory && dbCategory.map((category, index) => (
+                  <option
+                    key={index}
+                    value={category.name}
+                  >
+                    {category.name}
+                  </option>
+                  ))
+                }
               </select>
               <label className="arrowDown" htmlFor="category"><FiChevronDown size={24} /></label>
             </div>
@@ -152,7 +166,7 @@ export function EditDish() {
                 ingredients.map((ingredient, index) => (
                   <NewIngredient
                     key={String(index)}
-                    value={ingredient.name}
+                    value={ingredient.name ? ingredient.name : ingredient}
                     onClick={() => {handleRemoveIngredient(ingredient)}} 
                   />
                 ))
