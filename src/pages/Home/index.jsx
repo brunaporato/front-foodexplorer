@@ -11,26 +11,30 @@ import { useState, useEffect } from "react";
 export function Home() {
   const [categories, setCategories] = useState([]);
   const [dish, setDish] = useState([]);
-  const search = ""
 
-  async function fetchDishes() {
-    const response = await api.get(`/foods?name=${search}`);
-    setDish(response.data);
-  }
+  const [search, setSearch] = useState("");
 
-  async function fetchCategories() {
-    const response = await api.get("/categories");
-    setCategories(response.data);
-  }
 
   useEffect(() => {
-    fetchDishes();
+    async function fetchCategories() {
+      const response = await api.get("/categories");
+      setCategories(response.data);
+    }
+
+    async function fetchDishes() {
+      const response = await api.get(`/foods?name=${search}`);
+      setDish(response.data);
+    }
+
     fetchCategories();
+    fetchDishes();
   }, [search]);
 
   return(
     <Container>
-      <Header />
+      <Header
+        onChange={e => setSearch(e.target.value)}
+      />
       <div className="content-wrapper">
         <div className="top">
           <img src={macaronPng} alt="Imagem de ingredientes" />

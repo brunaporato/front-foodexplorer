@@ -11,7 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Footer } from "../Footer";
 
-export function Header() {
+export function Header({onChange}) {
   const [hideMenu, setHideMenu] = useState(true);
   const { user, signOut } = useAuth();
 
@@ -21,6 +21,12 @@ export function Header() {
 
   function handleHamburguerMenu() {
     setHideMenu(!hideMenu);
+  }
+
+  function handleSearch(e) {
+    if(e.keyCode === 13) {
+      setHideMenu(true)
+    }
   }
 
   function handleSignOut() {
@@ -38,7 +44,8 @@ export function Header() {
       </div>
       <Input
         placeholder="Busque por pratos ou ingredientes"
-        // onKeyDown={handleSearch}
+        onChange={onChange}
+        onKeyDown={handleSearch}
       />
       <ul>
         <li>
