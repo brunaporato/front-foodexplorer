@@ -11,11 +11,10 @@ import { useState, useEffect } from "react";
 export function Home() {
   const [categories, setCategories] = useState([]);
   const [dish, setDish] = useState([]);
-  const name = "";
-  const ing = "";
+  const search = ""
 
   async function fetchDishes() {
-    const response = await api.get(`/foods?name=${name}&ingredients=${ing}`);
+    const response = await api.get(`/foods?name=${search}`);
     setDish(response.data);
   }
 
@@ -24,11 +23,11 @@ export function Home() {
     setCategories(response.data);
   }
 
-  useEffect(() => {fetchDishes()}, []);
   useEffect(() => {
+    fetchDishes();
     fetchCategories();
-  }, [])
-  
+  }, [search]);
+
   return(
     <Container>
       <Header />

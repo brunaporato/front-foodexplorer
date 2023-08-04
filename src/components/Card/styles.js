@@ -69,9 +69,10 @@ export const Container = styled.div`
   .iconTop {
     position: absolute;
     top: .5rem;
-    right: .5rem;
+    right: 2.5rem;
     cursor: pointer;
     transition: filter .3s;
+    color: white;
 
     &:hover {
       filter: brightness(.8);

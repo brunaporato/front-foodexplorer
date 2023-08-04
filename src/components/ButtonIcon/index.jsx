@@ -2,14 +2,13 @@ import { Container } from "./styles";
 
 import { PiReceipt } from "react-icons/pi";
 
-export function ButtonIcon({ title, ...rest }) {
+export function ButtonIcon({price}) {
   return (
     <Container
     type="button"
-    {...rest}
     >
       <PiReceipt size={26} />
-     { title }
+      pedir - R${price}
     </Container>
   )
 } 

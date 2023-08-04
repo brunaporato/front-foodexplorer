@@ -15,6 +15,7 @@ import { api } from "../../services/api";
 
 export function Details() {
   const [data, setData] = useState([]);
+  const [quantityOrder, setQuantityOrder] = useState(1);
 
   const { user } = useAuth();
   const isAdmin = user.isAdmin === 1
@@ -25,6 +26,16 @@ export function Details() {
   function handleEditDish() {
     navigate(`/editdish/${params.id}`)
   }
+
+  function handlePlusOrder() {
+    setQuantityOrder(quantityOrder + 1);
+  }
+
+  function handleMinusOrder() {
+    quantityOrder <= 1 ? setQuantityOrder(1) :
+    setQuantityOrder(quantityOrder - 1);
+  }
+
 
   useEffect(() => {
     async function fetchDish() {
@@ -64,11 +75,21 @@ export function Details() {
           </section> :
           <section>
             <div className="items">
-              <button><FiMinus size={27} /></button>
-              <span>01</span>
-              <button><FiPlus size={27} /></button>
+              <button>
+                <FiMinus
+                  size={27}
+                  onClick={handleMinusOrder}
+                />
+              </button>
+              <span>{String(quantityOrder).padStart(2, "0")}</span>
+              <button>
+                <FiPlus
+                  size={27}
+                  onClick={handlePlusOrder}
+                />
+              </button>
             </div>
-            <ButtonIcon title="pedir - R$30,00" />
+            <ButtonIcon price={data.price} />
           </section>
         }
       </div>
