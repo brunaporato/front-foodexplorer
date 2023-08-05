@@ -57,6 +57,7 @@ export const Container = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+      justify-content: space-around;
       gap: 1.6rem;
 
       margin-top: 4.8rem;

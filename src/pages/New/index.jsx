@@ -31,6 +31,13 @@ export function New() {
     setNewIngredient("");
   }
 
+  function handleAddIngredientKeyDown(e) {
+    if(e.key === 'Enter') {
+      setIngredients(prevState => [...prevState, newIngredient]);
+      setNewIngredient("");
+    }
+  }
+
   function handleRemoveIngredient(deleted) {
     setIngredients(prevState => prevState.filter(ingredient => ingredient != deleted));
   }
@@ -140,7 +147,7 @@ export function New() {
                   <NewIngredient
                     key={String(index)}
                     value={ingredient}
-                    onClick={() => {handleRemoveIngredient(ingredient)}} 
+                    onClick={() => {handleRemoveIngredient(ingredient)}}
                   />
                 ))
               }
@@ -150,7 +157,8 @@ export function New() {
                 value={newIngredient}
                 onChange={e => setNewIngredient(e.target.value)}
                 onClick={handleAddIngredient}
-              />
+                onKeyDown={handleAddIngredientKeyDown} 
+                />
             </div>
           </div>
 

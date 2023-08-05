@@ -24,7 +24,7 @@ export function Header({onChange}) {
   }
 
   function handleSearch(e) {
-    if(e.keyCode === 13) {
+    if(e.key === 'Enter') {
       setHideMenu(true)
     }
   }
