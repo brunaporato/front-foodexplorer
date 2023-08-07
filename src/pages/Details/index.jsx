@@ -89,7 +89,7 @@ export function Details() {
                 />
               </button>
             </div>
-            <ButtonIcon price={data.price} />
+            <ButtonIcon text="pedir - R$ " price={data.price} />
           </section>
         }
       </div>

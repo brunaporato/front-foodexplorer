@@ -1,15 +1,16 @@
 import { Container, Logo, Clickable, Menu } from "./styles";
 
 import { FiMenu } from 'react-icons/fi';
-import { PiReceipt, PiX } from 'react-icons/pi';
+import { PiReceipt, PiX, PiSignOut } from 'react-icons/pi';
 
 import polygon from "../../assets/polygon.svg";
 import { useAuth } from "../../hooks/auth";
 import { Input } from "../Input";
+import { Footer } from "../Footer";
+import { ButtonIcon } from "../ButtonIcon";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Footer } from "../Footer";
 
 export function Header({onChange}) {
   const [hideMenu, setHideMenu] = useState(true);
@@ -25,14 +26,17 @@ export function Header({onChange}) {
 
   function handleSearch(e) {
     if(e.key === 'Enter') {
-      setHideMenu(true)
+      navigate("/");
+      setHideMenu(true);
     }
   }
 
   function handleSignOut() {
-    navigate("/")
-    signOut()
+    navigate("/");
+    signOut();
   }
+
+  //classname estava passando para o input dentro do component input, portanto, para desaparecer inteiro no mobile tive que fazer uma div
 
   return (
     <Container>
@@ -67,7 +71,7 @@ export function Header({onChange}) {
      </div>
           </Menu>
           <div id="header">
-          <Clickable onClick={handleHamburguerMenu}>
+          <Clickable onClick={handleHamburguerMenu} className="mobile">
             <FiMenu />
           </Clickable>
           <Logo to="/">
@@ -75,12 +79,31 @@ export function Header({onChange}) {
             <h1>food explorer</h1>
             <span>{ isAdmin ? `admin` : "" }</span>
           </Logo>
-          { isAdmin ? <div></div> :
-            <Clickable>
+          <div className="search desktop">
+          <Input
+            placeholder="Busque por pratos ou ingredientes"
+            onChange={onChange}
+            onKeyDown={handleSearch}
+          />
+          </div>
+          { isAdmin ? null :
+            <Clickable className="mobile">
               <PiReceipt className="user"/>
               <span>0</span>
             </Clickable>
           }
+          { isAdmin ? null :
+            <Clickable className="button desktop">
+              <ButtonIcon text="Pedidos " price="(0)"/>
+            </Clickable>
+          }
+
+          <Clickable
+            className="desktop" 
+            onClick={handleSignOut}
+          >
+            <PiSignOut size={32} />
+          </Clickable>
           </div>
     </Container>
   )

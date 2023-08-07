@@ -17,20 +17,22 @@ export const Container = styled.div`
     margin: 4.4rem 1.6rem 6.2rem 3.6rem;
     position: relative;
 
+    display: flex;
+    flex-direction: row-reverse;
+
     > img {
       position: absolute;
       left: -3rem;
       bottom: 0;
-      width: clamp(9rem, 50%, 19.1rem);
+      width: clamp(1.9rem, 45%, 25rem);
       height: auto;
     }
 
     .text {
-      width: 20rem;
+      min-width: 20rem;
       color: ${({ theme }) => theme.colors.light_300};
-      position: absolute;
-      right: .8rem;
-      bottom: 2.2rem;
+
+      margin: 3.9rem 2.1rem 0 18.3rem;
 
       > h1 {
         font-size: 1.7rem;
@@ -70,6 +72,34 @@ export const Container = styled.div`
           border-radius: .8rem;
       }
     }
+    }
+
+    @media (min-width: 800px) {
+      .top {
+        height: 26rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        margin-top: 16.4rem;
+
+
+        > img {
+          width: clamp(20rem, 45%, 45rem);
+        }
+
+        .text {
+          margin-left: 45rem;
+          h1 {
+            font-size: clamp(4rem, 80%, 14rem);
+            font-weight: 500;
+          }
+
+          p {
+            font-size: clamp(1.6rem, 60%, 16rem);
+          }
+        }
+      }
     }
 }
 `

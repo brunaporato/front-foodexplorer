@@ -8,10 +8,6 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.dark_700};
   padding: 5.6rem 2.8rem 2.4rem;
 
-  /* display: flex;
-  align-items: center;
-  justify-content: space-between; */
-
   #header {
     display: flex;
     align-items: center;
@@ -20,6 +16,32 @@ export const Container = styled.div`
 
   .hide {
     display: none;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  @media (min-width: 800px) {
+    .mobile {
+      display: none;
+    }
+
+    .desktop {
+      display: inline;
+    }
+
+    #header {
+      gap: 3.2rem;
+    }
+
+    .search {
+      width: 100%;
+    }
+
+    .button {
+      min-width: 16rem;
+    }
   }
 ` 
 
@@ -34,6 +56,8 @@ export const Logo = styled(Link)`
   gap: .8rem;
 
   font-family: 'Roboto';
+
+  min-width: 18rem;
 
   h1 {
     font-size: 2.2rem;

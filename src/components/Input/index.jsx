@@ -3,7 +3,7 @@ import { BiSearch } from "react-icons/bi";
 
 export function Input({ ...rest }) {
   return (
-    <Container>
+    <Container >
       <BiSearch size={24}/>
       <input type="text" {...rest}/>
     </Container>
