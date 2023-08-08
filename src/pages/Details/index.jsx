@@ -53,45 +53,47 @@ export function Details() {
       <div className="page">
         <a href="/"> 	<FiChevronLeft size={32} /> voltar</a>
         <img src={image} alt="Imagem do prato" />
-        <h1>{data.name}</h1>
-        <p>{data.description}</p>
-        {data.ingredients &&
-          <div className="ingredients">
-            { data.ingredients.map(ingredient => (
-              <Ingredient
-               key={String(ingredient.id)}
-               title={ingredient.name}
-              />
-            ))
-            }
-          </div>
-        }
-        { isAdmin ?
-          <section>
-            <Button
-              title="Editar prato"
-              onClick={handleEditDish}
-            />
-          </section> :
-          <section>
-            <div className="items">
-              <button>
-                <FiMinus
-                  size={27}
-                  onClick={handleMinusOrder}
+        <div className="dishInfo">
+          <h1>{data.name}</h1>
+          <p>{data.description}</p>
+          {data.ingredients &&
+            <div className="ingredients">
+              { data.ingredients.map(ingredient => (
+                <Ingredient
+                key={String(ingredient.id)}
+                title={ingredient.name}
                 />
-              </button>
-              <span>{String(quantityOrder).padStart(2, "0")}</span>
-              <button>
-                <FiPlus
-                  size={27}
-                  onClick={handlePlusOrder}
-                />
-              </button>
+              ))
+              }
             </div>
-            <ButtonIcon text="pedir - R$ " price={data.price} />
-          </section>
-        }
+          }
+          { isAdmin ?
+            <section>
+              <Button
+                title="Editar prato"
+                onClick={handleEditDish}
+              />
+            </section> :
+            <section>
+              <div className="items">
+                <button>
+                  <FiMinus
+                    size={27}
+                    onClick={handleMinusOrder}
+                  />
+                </button>
+                <span>{String(quantityOrder).padStart(2, "0")}</span>
+                <button>
+                  <FiPlus
+                    size={27}
+                    onClick={handlePlusOrder}
+                  />
+                </button>
+              </div>
+              <ButtonIcon text="pedir - R$ " price={data.price} />
+            </section>
+          }
+        </div>
       </div>
       <Footer />
     </Container>

@@ -9,13 +9,14 @@ export const Container = styled.div`
   .page {
     padding: 1.6rem 5.6rem 13rem;
     text-align: center;
-
-    /* padding-bottom: 9rem; */
+    display: flex;
+    flex-direction: column;
 
     img {
       width: 26.4rem;
       height: 26.4rem;
       border-radius: 50%;
+      align-self: center;
     }
 
 
@@ -27,58 +28,115 @@ export const Container = styled.div`
       display: flex;
       align-items: center;
       margin: 2rem 0 1.6rem;
+
     }
 
-    > h1 {
-      font-weight: 500;
-      font-size: 2.7rem;
-      margin: 1.6rem 0 2.4rem;
-    }
+    .dishInfo {
+      > h1 {
+        font-weight: 500;
+        font-size: 2.7rem;
+        margin: 1.6rem 0 2.4rem;
+      }
 
-    > p, h1 {
-      color: ${({ theme }) => theme.colors.light_300};
-      line-height: 140%;
-    }
+      > p, h1 {
+        color: ${({ theme }) => theme.colors.light_300};
+        line-height: 140%;
+      }
 
-    .ingredients {
-      display: grid;
-      align-items: center;
-      justify-items: center;
-
-      grid-template-columns: 1fr 1fr 1fr;
-      row-gap: 2.4rem;
-
-      margin-top: 2.4rem;
-
-      padding: .4rem .8rem;
-    }
-
-    > section {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      justify-content: space-around;
-      gap: 1.6rem;
-
-      margin-top: 4.8rem;
-
-      .items {
-        display: flex;
-        gap: 1.6rem;
+      .ingredients {
+        display: grid;
         align-items: center;
+        justify-content: center;
 
-        > button {
-        background: none;
-        border: none;
-        width: 2.7rem;
-        height: 2.7rem;
+        grid-template-columns: repeat(auto-fill, 11rem);
+        row-gap: 2.4rem;
+        column-gap: 2.4rem;
+
+        margin-top: 2.4rem;
+
+        padding: .4rem .8rem;
+
+      }
+
+      > section {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 1.6rem;
+
+        margin-top: 4.8rem;
+
+
+        .items {
+          display: flex;
+          gap: 1.6rem;
+          align-items: center;
+
+          > button {
+          background: none;
+          border: none;
+          width: 2.7rem;
+          height: 2.7rem;
+          }
+
+          > span {
+            font-family: 'Roboto', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 160%;
+          }
+        }
+    }
+    }
+  }
+
+  @media (min-width: 800px) {
+    .page {
+      display: grid;
+      justify-content: space-around;
+      grid-template-areas:
+      "back ."
+      "image dishInfo";
+
+      > img {
+        margin-top: 4.2rem;
+        width: 39rem;
+        height: auto;
+
+        grid-area: image;
+      }
+
+      > a {
+        grid-area: back;
+        font-weight: 700;
+      }
+
+      .dishInfo {
+        grid-area: dishInfo;
+
+        text-align: left;
+        width: 68rem;
+
+        align-self: center;
+
+        margin-left: 4.7rem;
+
+        > h1 {
+          font-size: 4rem;
         }
 
-        > span {
-          font-family: 'Roboto', serif;
-          font-size: 2.2rem;
-          font-weight: 700;
-          line-height: 160%;
+        > p {
+          font-size: 2.4rem;
+        }
+
+        .ingredients {
+          justify-content: left;
+          padding: 0;
+        }
+
+        > section {
+         justify-content: left;
+         width: fit-content;
         }
       }
     }
