@@ -8,6 +8,7 @@ import { useAuth } from "../../hooks/auth";
 import { Input } from "../Input";
 import { Footer } from "../Footer";
 import { ButtonIcon } from "../ButtonIcon";
+import { Button } from "../Button";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -33,6 +34,10 @@ export function Header({onChange}) {
   function handleSignOut() {
     navigate("/");
     signOut();
+  }
+
+  function handleNewDish() {
+    navigate("/new");
   }
 
   //classname estava passando para o input dentro do component input, portanto, para desaparecer inteiro no mobile tive que fazer uma div
@@ -85,13 +90,19 @@ export function Header({onChange}) {
             onKeyDown={handleSearch}
           />
           </div>
-          { isAdmin ? null :
+          { isAdmin ? <div></div> :
             <Clickable className="mobile">
               <PiReceipt className="user"/>
               <span>0</span>
             </Clickable>
           }
-          { isAdmin ? null :
+
+          { isAdmin ?
+          <Button
+            title="Novo prato"
+            onClick={handleNewDish}
+            className="button desktop"
+          /> :
             <Clickable className="button desktop">
               <ButtonIcon text="Pedidos " price="(0)"/>
             </Clickable>

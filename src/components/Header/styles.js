@@ -43,6 +43,7 @@ export const Container = styled.div`
 
     .button {
       min-width: 16rem;
+      max-width: 21.6rem;
     }
   }
 ` 
@@ -70,10 +71,25 @@ export const Logo = styled(Link)`
     font-size: 1.2rem;
     font-weight: 400;
     color: ${({ theme }) => theme.colors.cake_200};
+    grid-area: admin;
   }
 
   &:hover {
     filter: none;
+  }
+
+  @media (min-width: 800px) {
+    display: grid;
+    grid-template-areas:
+    "svg name"
+    ". admin";
+    position: relative;
+    
+    span {
+      position: absolute;
+      right: 0;
+      top: -1rem;
+    }
   }
 `
 

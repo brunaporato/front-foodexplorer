@@ -45,29 +45,32 @@ export function Card({ data, ...rest }) {
   return (
     <Container {...rest}>
       <img src={image} alt="Imagem do prato" />
-      <p onClick={handleDishDetails}>{data.name} &gt;</p>
+      <h1 onClick={handleDishDetails}>{data.name} &gt;</h1>
+      <p className="desktop">{data.description}</p>
       <span>R$ {data.price}</span>
-      { isAdmin ? '' :
-      <section>
-        <button>
-          <FiMinus
-            size={24}
-            onClick={handleMinusOrder}
-          />
-        </button>
-        <p>{String(quantityOrder).padStart(2, "0")}</p>
-        <button>
-          <FiPlus
-            size={24}
-            onClick={handlePlusOrder}
-          />
-        </button>
-      </section>
-      }
-      {
-        isAdmin ? '' :
-        <Button title="incluir" />
-      }
+      <div className="bottom">
+        { isAdmin ? '' :
+        <section>
+          <button>
+            <FiMinus
+              size={24}
+              onClick={handleMinusOrder}
+            />
+          </button>
+          <p>{String(quantityOrder).padStart(2, "0")}</p>
+          <button>
+            <FiPlus
+              size={24}
+              onClick={handlePlusOrder}
+            />
+          </button>
+        </section>
+        }
+        {
+          isAdmin ? '' :
+          <Button title="incluir" />
+        }
+      </div>
       <div className="iconTop">
       {
         isAdmin ?

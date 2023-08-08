@@ -39,4 +39,29 @@ export const Container = styled.div`
       font-size: 1.2rem;
     }
   }
+
+  @media (min-width: 800px) {
+    padding: 2.4rem 12.3rem;
+
+    > div {
+      gap: 1rem;
+    }
+
+    .logo {
+      p {
+        font-size: 2.4rem;
+      }
+
+      > svg {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+
+    .reserved {
+      p {
+        font-size: 1.4rem;
+      }
+    }
+  }
 `
