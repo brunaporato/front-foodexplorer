@@ -75,23 +75,25 @@ export const Container = styled.div`
     }
 
     @media (min-width: 800px) {
+      padding: 0 12.4rem;
+
       .top {
         height: 26rem;
         display: flex;
         align-items: center;
         justify-content: space-around;
 
-        margin-top: 16.4rem;
+        margin-top: 8rem;
 
 
         > img {
-          width: clamp(20rem, 45%, 45rem);
+          width: clamp(30rem, 45%, 50rem);
         }
 
         .text {
-          margin-left: 45rem;
+          margin-left: 30rem;
           h1 {
-            font-size: clamp(4rem, 80%, 14rem);
+            font-size: 4rem;
             font-weight: 500;
           }
 
@@ -99,6 +101,14 @@ export const Container = styled.div`
             font-size: clamp(1.6rem, 60%, 16rem);
           }
         }
+      }
+
+      .meal {
+        h2 {
+          font-size: 3.2rem;
+        }
+
+        margin-top: 2rem;
       }
     }
 }

@@ -26,7 +26,6 @@ export function Header({onChange}) {
 
   function handleSearch(e) {
     if(e.key === 'Enter') {
-      navigate("/");
       setHideMenu(true);
     }
   }

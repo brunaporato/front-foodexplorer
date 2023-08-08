@@ -5,11 +5,9 @@ export const Container = styled.div`
   border-radius: .5rem;
 
   padding: 1.2rem 1.4rem;
-  margin: 3.6rem 0;
 
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 1.4rem;
 
   width: 100%;
@@ -26,6 +24,7 @@ export const Container = styled.div`
     &::placeholder {
     font-family: 'Roboto', serif;
     color: ${({ theme }) => theme.colors.light_500};
+    text-align: center;
     }
   }
 `

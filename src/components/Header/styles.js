@@ -23,6 +23,8 @@ export const Container = styled.div`
   }
 
   @media (min-width: 800px) {
+    padding: 2.4rem 12.3rem;
+
     .mobile {
       display: none;
     }
@@ -75,7 +77,7 @@ export const Logo = styled(Link)`
   }
 `
 
-export const Clickable = styled(Link)`
+export const Clickable = styled.div`
   > svg {
     color: ${({ theme }) => theme.colors.light_100};
     font-size: 3.2rem;
@@ -106,6 +108,7 @@ export const Clickable = styled(Link)`
 
   &:hover {
     filter: none;
+    cursor: pointer;
   }
 `
 
