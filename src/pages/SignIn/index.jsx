@@ -26,6 +26,7 @@ export function SignIn() {
         <h1>food explorer</h1>
       </div>
       <form action="">
+        <h2>Faça login</h2>
         <div className="input-wrapper">
             <label htmlFor="email">Email</label>
             <InputDishInfo
@@ -45,8 +46,8 @@ export function SignIn() {
             />
           </div>
           <Button title="Entrar" onClick={handleSignIn}/>
+          <Link to="/register">Criar uma conta</Link>
       </form>
-      <Link to="/register">Criar uma conta</Link>
     </Container>
   )
 }

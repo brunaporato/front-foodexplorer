@@ -33,6 +33,10 @@ export const Container = styled.div`
 
   form {
     width: 100%;
+
+    > h2 {
+      display: none;
+    }
   }
 
   .input-wrapper {
@@ -43,12 +47,40 @@ export const Container = styled.div`
   }
 
   a {
+    display: flex;
     color: ${({ theme }) => theme.colors.light_100};
 
     font-weight: 500;
     font-size: 1.4rem;
 
+    justify-content: center;
     margin-top: 3.2rem;
   }
+
+  @media (min-width: 800px) {
+    display: grid;
+    grid-template-areas:
+    "top form";
+    grid-template-columns: 2fr 1fr .2fr;
+
+    .top {
+      margin-left: 25%;
+    }
+
+    form {
+      background: ${({ theme }) => theme.colors.dark_700};
+      padding: 6.4rem;
+      border-radius: 1.6rem;
+
+      min-width: 32.5rem;
+
+      > h2 {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 3.2rem;
+
+        font-size: 3.2rem;
+        font-weight: 500;
+      }
 
 `

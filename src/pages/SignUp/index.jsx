@@ -42,6 +42,7 @@ export function SignUp() {
         <h1>food explorer</h1>
       </div>
       <form action="">
+        <h2>Crie sua conta</h2>
         <div className="input-wrapper">
             <label htmlFor="name">Seu nome</label>
             <InputDishInfo
@@ -71,8 +72,8 @@ export function SignUp() {
             />
           </div>
           <Button type="button" title="Criar conta" onClick={handleSignUp} />
+          <Link to="/">Já tenho uma conta</Link>
       </form>
-      <Link to="/">Já tenho uma conta</Link>
     </Container>
   )
 }
