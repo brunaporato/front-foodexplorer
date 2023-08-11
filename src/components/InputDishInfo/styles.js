@@ -14,4 +14,8 @@ export const Container = styled.input`
     font-size: 1.6rem;
     color: ${({ theme }) => theme.colors.light_500};
   }
+
+  @media (min-width: 800px) {
+    padding: 1.2rem 1.4rem;
+  }
 `

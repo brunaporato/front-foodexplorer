@@ -38,6 +38,7 @@ export function New() {
     }
   }
 
+
   function handleRemoveIngredient(deleted) {
     setIngredients(prevState => prevState.filter(ingredient => ingredient != deleted));
   }
@@ -96,7 +97,7 @@ export function New() {
         <Link to="/"> 	<FiChevronLeft size={22} /> voltar</Link>
         <h1>Novo prato</h1>
         <form action="">
-          <div className="input-wrapper">
+          <div className="input-wrapper image">
             <label htmlFor="image">Imagem do Prato</label>
             <label className="inputImage" htmlFor="image"><FiUpload size={24} /> Selecione imagem</label>
             <InputDishInfo
@@ -107,7 +108,7 @@ export function New() {
             />
           </div>
 
-          <div className="input-wrapper">
+          <div className="input-wrapper name">
             <label htmlFor="name">Nome</label>
             <InputDishInfo
               id="name"
@@ -117,7 +118,7 @@ export function New() {
             />
           </div>
 
-          <div className="input-wrapper">
+          <div className="input-wrapper category">
             <label htmlFor="category">Categoria</label>
             <div className="select">
               <select
@@ -139,7 +140,7 @@ export function New() {
             </div>
           </div>
 
-          <div className="input-wrapper">
+          <div className="input-wrapper ingredientsArea">
             <p>Ingredientes</p>
             <div className="ingredients">
               {
@@ -162,7 +163,7 @@ export function New() {
             </div>
           </div>
 
-          <div className="input-wrapper">
+          <div className="input-wrapper price">
             <label htmlFor="price">Preço</label>
             <InputDishInfo
               id="price"
@@ -172,7 +173,7 @@ export function New() {
             />
           </div>
 
-          <div className="input-wrapper">
+          <div className="input-wrapper description">
             <label htmlFor="description">Descrição</label>
             <textarea
               id="description"
@@ -184,6 +185,7 @@ export function New() {
           <Button
             title="Salvar alterações"
             onClick={handleNewDish}
+            className="save"
           />
         </form>
       </div>

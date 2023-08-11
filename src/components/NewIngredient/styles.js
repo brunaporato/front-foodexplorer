@@ -12,9 +12,10 @@ export const Container = styled.div`
   color: ${({ theme, $isNew }) => $isNew ? theme.colors.light_500 : theme.colors.light_100 };
 
   border: ${({ theme, $isNew }) => $isNew ? `1px dashed ${theme.colors.light_500}` : "none" };
+  
   border-radius: .8rem;
 
-  padding: .5rem 1.6rem;
+  padding: .4rem .8rem;
 
 
   button {

@@ -9,8 +9,7 @@ export const Container = styled.div`
   .page {
     padding: 1rem 3.2rem 10rem;
 
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 2.4rem;
 
     > a {
@@ -31,10 +30,9 @@ export const Container = styled.div`
     }
 
     form {
-      display: flex;
-      flex-direction: column;
+      display: grid;
       gap: 2.4rem;
-
+      max-width: 90vw;
       .input-wrapper {
       display: flex;
       flex-direction: column;
@@ -103,26 +101,14 @@ export const Container = styled.div`
 
       .ingredients {
         background: ${({ theme }) => theme.colors.dark_800};
-        border-radius: .5rem;
+        border-radius: .8rem;
 
         padding: .8rem;
         display: flex;
         gap: 1.6rem;
-
   
         width: 100%;
-        overflow-x: scroll;
-
-        &::-webkit-scrollbar-track {
-        background-color: ${({ theme }) => theme.colors.dark_400};
-        }
-        &::-webkit-scrollbar {
-            height: 7px;
-        }
-        &::-webkit-scrollbar-thumb {
-            background: ${({ theme }) => theme.colors.dark_1000};
-            border-radius: .8rem;
-        }
+        flex-wrap: wrap;
       }
       
       > textarea {
@@ -141,8 +127,74 @@ export const Container = styled.div`
           color: ${({ theme }) => theme.colors.light_500};
         }
       }
+
+      .save {
+        margin-bottom: 5rem;
+      }
     }
     }
 
+    @media (min-width: 800px) {
+
+      justify-content: center;
+      width: 100%;
+
+      form {
+        gap: 3.2rem;
+        width: 80vw;
+        grid-template-columns: calc((100% - (9 * 3.2rem)) / 10) calc((100% - (9 * 3.2rem)) / 10) calc((100% - (9 * 3.2rem)) / 10) calc((100% - (9 * 3.2rem)) / 10) calc((100% - (9 * 3.2rem)) / 10) calc((100% - (9 * 3.2rem)) / 10) calc((100% - (9 * 3.2rem)) / 10) calc((100% - (9 * 3.2rem)) / 10) calc((100% - (9 * 3.2rem)) / 10) calc((100% - (9 * 3.2rem)) / 10);
+        grid-template-rows: auto auto auto auto;
+        
+        .input-wrapper {
+          .ingredients {
+            padding: .4rem .8rem;
+          }
+
+          .select {
+            padding:.3rem;
+            background: ${({ theme }) => theme.colors.dark_800};
+
+            select {
+              background: ${({ theme }) => theme.colors.dark_800};
+            }
+          }
+        }
+      }
+
+        .input-wrapper:nth-child(1) {
+          grid-column: 1 / span 3;
+          grid-row: 1;
+
+          .inputImage {
+           font-size: 1.4rem;
+          }
+        }
+        .input-wrapper:nth-child(2) {
+          grid-column: 4 / span 4;
+          grid-row: 1;
+        }
+        .input-wrapper:nth-child(3) {
+          grid-column: 8 / span 3;
+          grid-row: 1;
+        }
+        .input-wrapper:nth-child(4) {
+          grid-row: 2;
+          grid-column: 1 / span 8;
+        }
+        .input-wrapper:nth-child(5) {
+          grid-row: 2;
+          grid-column: 9 / span 2;
+        }
+        .input-wrapper:nth-child(6) {
+          grid-row: 3;
+          grid-column: 1 / span 10;
+        }
+
+        .save {
+          grid-row: 4;
+          grid-column: 8 / span 3;
+
+        }
+      }
     }
 `
