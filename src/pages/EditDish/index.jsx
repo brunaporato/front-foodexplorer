@@ -43,6 +43,13 @@ export function EditDish() {
     setNewIngredient("");
   }
 
+  function handleAddIngredientKeyDown(e) {
+    if(e.key === 'Enter') {
+      setIngredients(prevState => [...prevState, newIngredient]);
+      setNewIngredient("");
+    }
+  }
+
   function handleRemoveIngredient(deleted) {
     setIngredients(prevState => prevState.filter(ingredient => ingredient != deleted));
   }
@@ -177,6 +184,7 @@ export function EditDish() {
                 value={newIngredient}
                 onChange={e => setNewIngredient(e.target.value)}
                 onClick={handleAddIngredient}
+                onKeyDown={handleAddIngredientKeyDown}
               />
             </div>
           </div>
