@@ -6,8 +6,9 @@ export const Container = styled.div`
 
   position: relative;
 
-  .content-wrapper {
-    padding-bottom: 10.1rem;
+
+  .page {
+    padding-bottom: 15rem;
 
     .top {
     background: ${({ theme }) => theme.colors.gradient_200};
@@ -45,71 +46,110 @@ export const Container = styled.div`
         font-size: 1.2rem;
       }
     }
+    }
+
+    .meal {
+      margin-left: 2.4rem;
+      
+      > h2 {
+        color: ${({ theme }) => theme.colors.light_300};
+        font-weight: 500;
+        font-size: 1.8rem;
+      }
+
+      .cards {
+        display: flex;
+        overflow-x: scroll;
+
+        position: relative;
+
+        gap: 1.5rem;
+
+        &::-webkit-scrollbar-track {
+          background-color: ${({ theme }) => theme.colors.dark_400};
+        }
+        &::-webkit-scrollbar {
+            height: 7px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: ${({ theme }) => theme.colors.dark_1000};
+            border-radius: .8rem;
+        }
+      }
+
+      .left {
+        transform: matrix(-1, 0, 0, 1, 0, 0);
+      }
+
+      .right {
+        position: absolute;
+        right: 0;
+      }
+    }
+
+    .desktop {
+      display: none;
+    }
   }
 
-
-  .meal {
-    margin-left: 2.4rem;
+  @media (min-width: 800px) {
+    .page {
+      padding: 0 12.4rem 15rem;
     
-    > h2 {
-      color: ${({ theme }) => theme.colors.light_300};
-      font-weight: 500;
-      font-size: 1.8rem;
-    }
-
-    .cards {
-      display: flex;
-      overflow-x: scroll;
-
-      &::-webkit-scrollbar-track {
-        background-color: ${({ theme }) => theme.colors.dark_400};
-      }
-      &::-webkit-scrollbar {
-          height: 7px;
-      }
-      &::-webkit-scrollbar-thumb {
-          background: ${({ theme }) => theme.colors.dark_1000};
-          border-radius: .8rem;
-      }
-    }
-    }
-
-    @media (min-width: 800px) {
-      padding: 0 12.4rem;
-
       .top {
         height: 26rem;
         display: flex;
         align-items: center;
         justify-content: space-around;
-
+  
         margin-top: 8rem;
-
-
+  
+  
         > img {
           width: clamp(30rem, 45%, 50rem);
         }
-
+  
         .text {
           margin-left: 30rem;
           h1 {
             font-size: 4rem;
             font-weight: 500;
           }
-
+  
           p {
             font-size: clamp(1.6rem, 60%, 16rem);
           }
         }
       }
-
+  
       .meal {
+        margin-top: 2rem;
+       
         h2 {
           font-size: 3.2rem;
         }
+        
+        .cards {
+          overflow: hidden;
+          gap: 0;
+        }
+      }
 
-        margin-top: 2rem;
+      .desktop {
+        display: inline;
+      }
+
+      .mobile {
+        display: none;
       }
     }
-}
+  }
+  `
+
+export const Gradient = styled.div`
+  background: ${({ theme }) => theme.colors.gradient_100};
+  width: 20rem;
+  height: 100%;
+
+  position: absolute;
 `

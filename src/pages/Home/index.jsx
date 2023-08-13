@@ -1,8 +1,10 @@
 import { Container } from "./styles";
 
+
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { Card } from "../../components/Card";
+import { Carrousel } from "../../components/Carrousel";
 
 import macaronPng from "../../assets/pngegg2.png"
 import { api } from "../../services/api";
@@ -11,9 +13,8 @@ import { useState, useEffect } from "react";
 export function Home() {
   const [categories, setCategories] = useState([]);
   const [dish, setDish] = useState([]);
-
   const [search, setSearch] = useState("");
-
+  
 
   useEffect(() => {
     async function fetchCategories() {
@@ -35,7 +36,7 @@ export function Home() {
       <Header
         onChange={e => setSearch(e.target.value)}
       />
-      <div className="content-wrapper">
+      <div className="page">
         <div className="top">
           <img src={macaronPng} alt="Imagem de ingredientes" />
           <div className="text">
@@ -43,24 +44,27 @@ export function Home() {
             <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
           </div>
         </div>
-          {
-          categories.map((category, index) => (
-            <section className="meal" key={index}>
-              <h2>{category.name}</h2>
-              <div className="cards">
-              {
-                dish.filter(dish => dish.category == category.name).map(dish => (
-                <Card
-                  key={String(dish.id)}
-                  data={dish}
-                />
-              )
-              )
+          <div className="mobile">
+            {
+            categories.map((category) => (
+              <section className="meal" key={String(category.id)}>
+                <h2>{category.name}</h2>
+                <div className="cards">
+                {
+                  dish.filter(dish => dish.category == category.name).map((dish) => (
+                      <Card
+                        key={String(dish.id)}
+                        data={dish}
+                      />
+                    ) 
+                  )
                 }
-              </div>
-            </section>
-          ))
-          }
+                </div>
+              </section>
+            ))
+            }
+          </div>
+          <Carrousel />
       </div>
       <Footer className="footer" />
     </Container>

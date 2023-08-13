@@ -10,7 +10,7 @@ export const Container = styled.div`
 
   width: fit-content;
   /* height: 29.2rem; */
-  margin: 2.4rem 2.4rem 2.4rem 0;
+  /* margin: 2.4rem 2.4rem 2.4rem 0; */
 
   flex-shrink: 0;
 
