@@ -42,12 +42,15 @@ export function Card({ data, ...rest }) {
     setQuantityOrder(quantityOrder - 1);
   }
 
+  const priceZeros = String(data.price).padEnd(5, "000") ;
+  const priceFinal = priceZeros.substr(0,2)+"," + priceZeros.substr(3,3);
+
   return (
     <Container {...rest}>
       <img src={image} alt="Imagem do prato" />
       <h1 onClick={handleDishDetails}>{data.name} &gt;</h1>
       <p className="desktop">{data.description}</p>
-      <span>R$ {data.price}</span>
+      <span>R$ {priceFinal}</span>
       <div className="bottom">
         { isAdmin ? '' :
         <section>

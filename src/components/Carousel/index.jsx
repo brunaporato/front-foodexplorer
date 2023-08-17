@@ -11,10 +11,10 @@ import { useState, useEffect } from "react";
 import { api } from "../../services/api";
 
 
-export function Carrousel() {
+export function Carousel({search}) {
   const [categories, setCategories] = useState([]);
   const [dish, setDish] = useState([]);
-  const [search, setSearch] = useState("");
+  
   
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export function Carrousel() {
             hasTrack={false}
             options={{
               rewind: true,
-              width: "100%",
+              width: '100%',
               perPage: 4,
               breakpoints: {
                 1489: {
@@ -56,7 +56,7 @@ export function Carrousel() {
                 833: {
                   perPage: 1
                 }
-              }
+              },
             }}
           >
           <SplideTrack>

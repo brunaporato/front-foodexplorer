@@ -14,8 +14,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export function Header({onChange}) {
-  const [hideMenu, setHideMenu] = useState(true);
   const { user, signOut } = useAuth();
+  const [hideMenu, setHideMenu] = useState(true);
+  const [order, setOrder] = useState(0);
 
   const navigate = useNavigate();
 
@@ -93,7 +94,7 @@ export function Header({onChange}) {
           { isAdmin ? <div></div> :
             <Clickable className="mobile">
               <PiReceipt className="user"/>
-              <span>0</span>
+              <span>{order}</span>
             </Clickable>
           }
 
@@ -104,7 +105,7 @@ export function Header({onChange}) {
             className="button desktop"
           /> :
             <Clickable className="button desktop">
-              <ButtonIcon text="Pedidos " price="(0)"/>
+              <ButtonIcon text="Pedidos " price={order} order/>
             </Clickable>
           }
 

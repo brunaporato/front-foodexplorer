@@ -4,17 +4,19 @@ import { Container } from "./styles";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { Card } from "../../components/Card";
-import { Carrousel } from "../../components/Carrousel";
+import { Carousel } from "../../components/Carousel";
 
 import macaronPng from "../../assets/pngegg2.png"
 import { api } from "../../services/api";
 import { useState, useEffect } from "react";
 
+
 export function Home() {
+
   const [categories, setCategories] = useState([]);
   const [dish, setDish] = useState([]);
   const [search, setSearch] = useState("");
-  
+
 
   useEffect(() => {
     async function fetchCategories() {
@@ -64,7 +66,7 @@ export function Home() {
             ))
             }
           </div>
-          <Carrousel />
+          <Carousel search={search} />
       </div>
       <Footer className="footer" />
     </Container>

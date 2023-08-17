@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100%;
     
   .splide__arrow {
-    height: 90%;
     width: 10%;
     font-size: 40px;
     background: none;
@@ -32,8 +30,10 @@ export const Container = styled.div`
 
 export const Gradient = styled.div`
   background: ${({ theme }) => theme.colors.gradient_100};
-  width: 20rem;
+
+  width: 22.4rem;
   height: 100%;
 
   position: absolute;
+  pointer-events: none;
 `
