@@ -10,12 +10,13 @@ import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export function Card({ data, ...rest }) {
+export function Card({ data, setOrder, ...rest }) {
   const { user } = useAuth();
   const isAdmin = user.isAdmin === 1;
 
   const [active, setActive] = useState(false);
   const [quantityOrder, setQuantityOrder] = useState(1);
+  // const [order, setOrder] = useState([]);
 
   const image = `${api.defaults.baseURL}/files/${data.image}`
   
@@ -40,6 +41,11 @@ export function Card({ data, ...rest }) {
   function handleMinusOrder() {
     quantityOrder <= 1 ? setQuantityOrder(1) :
     setQuantityOrder(quantityOrder - 1);
+  }
+
+  function handleSetOrder(data, quantityOrder) {
+    const dish_id = data.id;
+    setOrder({ dish_id, quantityOrder });
   }
 
   const priceZeros = String(data.price).padEnd(5, "000") ;
@@ -71,7 +77,7 @@ export function Card({ data, ...rest }) {
         }
         {
           isAdmin ? '' :
-          <Button title="incluir" />
+          <Button title="incluir" onClick={() => handleSetOrder(data, quantityOrder)}/>
         }
       </div>
       <div className="iconTop">

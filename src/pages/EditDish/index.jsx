@@ -146,7 +146,7 @@ export function EditDish() {
 
           <div className="input-wrapper">
             <label htmlFor="category">Categoria</label>
-            <div className="select">
+            <div className="select" id="select">
               <select
                 id="category"
                 onChange={e => setCategory(e.target.value)}

@@ -90,7 +90,7 @@ export const Container = styled.div`
     display: none;
   }
 
-  @media (min-width: 800px) {
+  @media (min-width: 856px) {
     gap: 1.5rem;
     width: 30rem;
 
@@ -133,5 +133,11 @@ export const Container = styled.div`
       font-weight: 400;
       line-height: 160%;
     }
+  }
+
+  transition: all .3s ease;
+
+  &:hover {
+    transform: scale(1.05);
   }
 `

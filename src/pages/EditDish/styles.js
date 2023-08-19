@@ -169,8 +169,9 @@ export const Container = styled.div`
 
           .select {
             padding:.3rem;
+    
             background: ${({ theme }) => theme.colors.dark_800};
-
+    
             select {
               background: ${({ theme }) => theme.colors.dark_800};
             }
@@ -195,6 +196,15 @@ export const Container = styled.div`
         .input-wrapper:nth-child(3) {
           grid-column: 8 / span 3;
           grid-row: 1;
+
+          #select {
+            background: ${({ theme }) => theme.colors.dark_800};
+          }
+          
+          #category {
+            padding: .7rem;
+            background: ${({ theme }) => theme.colors.dark_800};
+          }
         }
 
         .input-wrapper:nth-child(4) {
@@ -213,10 +223,11 @@ export const Container = styled.div`
         }
 
         footer {
-          grid-row: 4;
-          grid-column: 8 / span 3;
-
           margin-bottom: 5rem;
+
+          position: absolute;
+          bottom: 10rem;
+          right: clamp(3rem, 18%, 23rem);
         }
       }
 `

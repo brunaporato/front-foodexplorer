@@ -11,7 +11,7 @@ import { useState, useEffect } from "react";
 import { api } from "../../services/api";
 
 
-export function Carousel({search}) {
+export function Carousel({search, setOrder}) {
   const [categories, setCategories] = useState([]);
   const [dish, setDish] = useState([]);
   
@@ -66,6 +66,7 @@ export function Carousel({search}) {
                 <Card
                   key={String(dish.id)}
                   data={dish}
+                  setOrder={setOrder}
                 />
               </SplideSlide>
               ) 

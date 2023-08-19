@@ -13,10 +13,9 @@ import { Button } from "../Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export function Header({onChange}) {
+export function Header({onChange, orderItems}) {
   const { user, signOut } = useAuth();
   const [hideMenu, setHideMenu] = useState(true);
-  const [order, setOrder] = useState(0);
 
   const navigate = useNavigate();
 
@@ -76,45 +75,45 @@ export function Header({onChange}) {
      </div>
           </Menu>
           <div id="header">
-          <Clickable onClick={handleHamburguerMenu} className="mobile">
-            <FiMenu />
-          </Clickable>
-          <Logo to="/">
-            <img src={polygon} alt="Logo" />
-            <h1>food explorer</h1>
-            <span>{ isAdmin ? `admin` : "" }</span>
-          </Logo>
-          <div className="search desktop">
-          <Input
-            placeholder="Busque por pratos ou ingredientes"
-            onChange={onChange}
-            onKeyDown={handleSearch}
-          />
-          </div>
-          { isAdmin ? <div></div> :
-            <Clickable className="mobile">
-              <PiReceipt className="user"/>
-              <span>{order}</span>
+            <Clickable onClick={handleHamburguerMenu} className="mobile">
+              <FiMenu />
             </Clickable>
-          }
+            <Logo to="/">
+              <img src={polygon} alt="Logo" />
+              <h1>food explorer</h1>
+              <span>{ isAdmin ? `admin` : "" }</span>
+            </Logo>
+            <div className="search desktop">
+            <Input
+              placeholder="Busque por pratos ou ingredientes"
+              onChange={onChange}
+              onKeyDown={handleSearch}
+            />
+            </div>
+            { isAdmin ? <div></div> :
+              <Clickable className="mobile">
+                <PiReceipt className="user"/>
+                <span>{orderItems}</span>
+              </Clickable>
+            }
 
-          { isAdmin ?
-          <Button
-            title="Novo prato"
-            onClick={handleNewDish}
-            className="button desktop"
-          /> :
-            <Clickable className="button desktop">
-              <ButtonIcon text="Pedidos " price={order} order/>
+            { isAdmin ?
+            <Button
+              title="Novo prato"
+              onClick={handleNewDish}
+              className="button desktop"
+            /> :
+              <Clickable className="button desktop">
+                <ButtonIcon text="Pedidos " price={orderItems} order/>
+              </Clickable>
+            }
+
+            <Clickable
+              className="desktop" 
+              onClick={handleSignOut}
+            >
+              <PiSignOut size={32} />
             </Clickable>
-          }
-
-          <Clickable
-            className="desktop" 
-            onClick={handleSignOut}
-          >
-            <PiSignOut size={32} />
-          </Clickable>
           </div>
     </Container>
   )

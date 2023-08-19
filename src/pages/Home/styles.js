@@ -13,7 +13,6 @@ export const Container = styled.div`
     .top {
     background: ${({ theme }) => theme.colors.gradient_200};
     height: 12rem;
-    min-width: 31rem;
 
     margin: 4.4rem 1.6rem 6.2rem 3.6rem;
     position: relative;
@@ -21,12 +20,15 @@ export const Container = styled.div`
     display: flex;
     flex-direction: row-reverse;
 
+
     > img {
       position: absolute;
       left: -3rem;
       bottom: 0;
-      width: clamp(1.9rem, 45%, 25rem);
+      width: clamp(4rem, 45%, 25rem);
       height: auto;
+
+      animation: slideRight .7s ease-in;
     }
 
     .text {
@@ -45,6 +47,8 @@ export const Container = styled.div`
         line-height: 140%;
         font-size: 1.2rem;
       }
+
+      animation: slideRight .7s ease-in;
     }
     }
 
@@ -92,7 +96,29 @@ export const Container = styled.div`
     }
   }
 
-  @media (min-width: 800px) {
+  @media (max-width: 370px) {
+    .top {
+      position: relative;
+
+      > img {
+        display: none;
+      }
+    }
+
+    .text {
+      > p {
+        text-align: center;
+        margin-left: -10%;
+      }
+      
+      >h1 {
+        margin-left: -10%;
+        text-align: center;
+      }
+    }
+  }
+
+  @media (min-width: 856px) {
     .page {
       padding: 0 12.4rem 15rem;
     
@@ -144,6 +170,16 @@ export const Container = styled.div`
       }
     }
   }
+
+  @keyframes slideRight {
+    0% {
+      transform: translateX(-140px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
   `
 
 export const Gradient = styled.div`

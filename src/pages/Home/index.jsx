@@ -14,8 +14,10 @@ import { useState, useEffect } from "react";
 export function Home() {
 
   const [categories, setCategories] = useState([]);
-  const [dish, setDish] = useState([]);
+  const [dishes, setDishes] = useState([]);
   const [search, setSearch] = useState("");
+  const [order, setOrder] = useState();
+  const [orderItems, setOrderItems] = useState(0);
 
 
   useEffect(() => {
@@ -26,22 +28,44 @@ export function Home() {
 
     async function fetchDishes() {
       const response = await api.get(`/foods?name=${search}`);
-      setDish(response.data);
+      setDishes(response.data);
     }
 
     fetchCategories();
     fetchDishes();
   }, [search]);
 
+  useEffect(() => {
+    if(order) {
+      const oldItems = JSON.parse(localStorage.getItem("@foodexplorer:order")) || [];
+      const existingDishIndex = oldItems ? oldItems.findIndex(dish => dish.dish_id === order.dish_id) : -1;
+      
+      const updatedOrder = [ ...oldItems ];
+
+      if(existingDishIndex !== -1) {
+        updatedOrder[existingDishIndex].quantityOrder += order.quantityOrder;
+      } else {
+        updatedOrder.push(order);
+      }
+
+      localStorage.setItem("@foodexplorer:order", JSON.stringify(updatedOrder));
+
+      setOrderItems(orderItems + order.quantityOrder);
+
+      alert("Prato(s) adicionado(s) ao pedido com sucesso");
+    }
+  }, [order])
+
   return(
     <Container>
       <Header
         onChange={e => setSearch(e.target.value)}
+        orderItems={orderItems}
       />
       <div className="page">
         <div className="top">
           <img src={macaronPng} alt="Imagem de ingredientes" />
-          <div className="text">
+          <div className="text txt">
             <h1>Sabores inigualáveis</h1>
             <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
           </div>
@@ -53,10 +77,11 @@ export function Home() {
                 <h2>{category.name}</h2>
                 <div className="cards">
                 {
-                  dish.filter(dish => dish.category == category.name).map((dish) => (
+                  dishes.filter(dish => dish.category == category.name).map((dish) => (
                       <Card
                         key={String(dish.id)}
                         data={dish}
+                        setOrder={setOrder}
                       />
                     ) 
                   )
@@ -66,7 +91,7 @@ export function Home() {
             ))
             }
           </div>
-          <Carousel search={search} />
+          <Carousel search={search} setOrder={setOrder} />
       </div>
       <Footer className="footer" />
     </Container>

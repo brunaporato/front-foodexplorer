@@ -16,6 +16,7 @@ import { api } from "../../services/api";
 export function Details() {
   const [data, setData] = useState([]);
   const [quantityOrder, setQuantityOrder] = useState(1);
+  const [orderItems, setOrderItems] = useState(0);
 
   const { user } = useAuth();
   const isAdmin = user.isAdmin === 1
@@ -36,6 +37,11 @@ export function Details() {
     setQuantityOrder(quantityOrder - 1);
   }
 
+  function handleAddOrder() {
+    setOrderItems(prevState => prevState + quantityOrder);
+    alert("Prato adicionado ao pedido com sucesso.");
+  }
+
 
   useEffect(() => {
     async function fetchDish() {
@@ -45,11 +51,13 @@ export function Details() {
     fetchDish();
   }, [params.id]);
   
-  const image = `${api.defaults.baseURL}/files/${data.image}`
+  const image = `${api.defaults.baseURL}/files/${data.image}`;
+  const priceZeros = String(data.price).padEnd(5, "000") ;
+  const priceFinal = priceZeros.substr(0,2)+"," + priceZeros.substr(3,3);
 
   return (
     <Container>
-      <Header />
+      <Header orderItems={orderItems} />
       <div className="page">
         <a href="/"> 	<FiChevronLeft size={32} /> voltar</a>
         <img src={image} alt="Imagem do prato" />
@@ -90,7 +98,11 @@ export function Details() {
                   />
                 </button>
               </div>
-              <ButtonIcon text="pedir - R$ " price={data.price} />
+              <ButtonIcon
+                text="pedir - R$ "
+                price={priceFinal}
+                onClick={handleAddOrder}
+              />
             </section>
           }
         </div>
