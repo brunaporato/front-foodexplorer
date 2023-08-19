@@ -65,6 +65,7 @@ export const Container = styled.div`
       .cards {
         display: flex;
         overflow-x: scroll;
+        overflow-y: hidden;
 
         position: relative;
 
