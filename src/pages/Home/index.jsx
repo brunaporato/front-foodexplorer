@@ -27,13 +27,13 @@ export function Home() {
     }
 
     async function fetchDishes() {
-      const response = await api.get(`/foods?name=${search}`);
+      const response = await api.get(`/foods?search=${search}`);
       setDishes(response.data);
     }
 
     fetchCategories();
     fetchDishes();
-  }, [search]);
+  }, [search, dishes]);
 
   useEffect(() => {
     if(order) {
@@ -54,7 +54,7 @@ export function Home() {
 
       alert("Prato(s) adicionado(s) ao pedido com sucesso");
     }
-  }, [order])
+  }, [order, orderItems])
 
   return(
     <Container>

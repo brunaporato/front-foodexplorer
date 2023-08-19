@@ -51,7 +51,7 @@ export function Details() {
     fetchDish();
   }, [params.id]);
   
-  const image = `${api.defaults.baseURL}/files/${data.image}`;
+  const image = data.image ? `${api.defaults.baseURL}/files/${data.image}` : 'https://i.pinimg.com/736x/6c/97/59/6c97593996ab4818345c6082953b4d6e.jpg'
   const priceZeros = String(data.price).padEnd(5, "000") ;
   const priceFinal = priceZeros.substr(0,2)+"," + priceZeros.substr(3,3);
 

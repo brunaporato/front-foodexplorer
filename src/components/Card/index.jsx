@@ -16,9 +16,8 @@ export function Card({ data, setOrder, ...rest }) {
 
   const [active, setActive] = useState(false);
   const [quantityOrder, setQuantityOrder] = useState(1);
-  // const [order, setOrder] = useState([]);
 
-  const image = `${api.defaults.baseURL}/files/${data.image}`
+  const image = data.image ? `${api.defaults.baseURL}/files/${data.image}` : 'https://i.pinimg.com/736x/6c/97/59/6c97593996ab4818345c6082953b4d6e.jpg'
   
   const navigate = useNavigate();
 

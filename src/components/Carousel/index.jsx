@@ -15,6 +15,7 @@ export function Carousel({search, setOrder}) {
   const [categories, setCategories] = useState([]);
   const [dish, setDish] = useState([]);
   
+  const useGap = dish.length < 4 ? true : false;
   
 
   useEffect(() => {
@@ -24,14 +25,14 @@ export function Carousel({search, setOrder}) {
     }
 
     async function fetchDishes() {
-      const response = await api.get(`/foods?name=${search}`);
+      const response = await api.get(`/foods?search=${search}`);
       setDish(response.data);
     }
 
     fetchCategories();
     fetchDishes();
   }, [search]);
-  
+
   return (
     <Container>
       {
@@ -46,6 +47,7 @@ export function Carousel({search, setOrder}) {
               rewind: true,
               width: '100%',
               perPage: 4,
+              gap: useGap ? '25rem' : '',
               breakpoints: {
                 1489: {
                   perPage: 3
