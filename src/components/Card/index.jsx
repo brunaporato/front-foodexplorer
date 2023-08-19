@@ -10,8 +10,8 @@ import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export function Card({ data, setOrder, ...rest }) {
-  const { user } = useAuth();
+export function Card({ data, ...rest }) {
+  const { user, setOrder } = useAuth();
   const isAdmin = user.isAdmin === 1;
 
   const [active, setActive] = useState(false);

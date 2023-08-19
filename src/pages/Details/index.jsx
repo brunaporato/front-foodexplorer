@@ -16,9 +16,8 @@ import { api } from "../../services/api";
 export function Details() {
   const [data, setData] = useState([]);
   const [quantityOrder, setQuantityOrder] = useState(1);
-  const [orderItems, setOrderItems] = useState(0);
 
-  const { user } = useAuth();
+  const { user, addOrder, orderItems, setOrder } = useAuth();
   const isAdmin = user.isAdmin === 1
 
   const params = useParams();
@@ -37,11 +36,14 @@ export function Details() {
     setQuantityOrder(quantityOrder - 1);
   }
 
-  function handleAddOrder() {
-    setOrderItems(prevState => prevState + quantityOrder);
-    alert("Prato adicionado ao pedido com sucesso.");
+  function handleSetOrder(data, quantityOrder) {
+    const dish_id = data.id;
+    setOrder({ dish_id, quantityOrder });
   }
 
+  const image = data.image ? `${api.defaults.baseURL}/files/${data.image}` : 'https://i.pinimg.com/736x/6c/97/59/6c97593996ab4818345c6082953b4d6e.jpg'
+  const priceZeros = String(data.price).padEnd(5, "000") ;
+  const priceFinal = priceZeros.substr(0,2)+"," + priceZeros.substr(3,3);
 
   useEffect(() => {
     async function fetchDish() {
@@ -50,14 +52,15 @@ export function Details() {
     }
     fetchDish();
   }, [params.id]);
+
+  useEffect(() => {
+    addOrder()
+  }, [addOrder])
   
-  const image = data.image ? `${api.defaults.baseURL}/files/${data.image}` : 'https://i.pinimg.com/736x/6c/97/59/6c97593996ab4818345c6082953b4d6e.jpg'
-  const priceZeros = String(data.price).padEnd(5, "000") ;
-  const priceFinal = priceZeros.substr(0,2)+"," + priceZeros.substr(3,3);
 
   return (
     <Container>
-      <Header orderItems={orderItems} />
+      <Header />
       <div className="page">
         <a href="/"> 	<FiChevronLeft size={32} /> voltar</a>
         <img src={image} alt="Imagem do prato" />
@@ -101,7 +104,7 @@ export function Details() {
               <ButtonIcon
                 text="pedir - R$ "
                 price={priceFinal}
-                onClick={handleAddOrder}
+                onClick={() => handleSetOrder(data, quantityOrder)}
               />
             </section>
           }

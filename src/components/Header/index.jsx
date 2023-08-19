@@ -13,8 +13,8 @@ import { Button } from "../Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export function Header({onChange, orderItems}) {
-  const { user, signOut } = useAuth();
+export function Header({ onChange }) {
+  const { user, signOut, orderItems } = useAuth();
   const [hideMenu, setHideMenu] = useState(true);
 
   const navigate = useNavigate();

@@ -11,15 +11,17 @@ import { api } from "../../services/api";
 import { useState, useEffect } from "react";
 import { FiXCircle } from "react-icons/fi";
 
+import { useAuth } from "../../hooks/auth";
+
+
 
 export function Home() {
 
   const [categories, setCategories] = useState([]);
   const [dishes, setDishes] = useState([]);
   const [search, setSearch] = useState("");
-  const [order, setOrder] = useState();
-  const [orderItems, setOrderItems] = useState(0);
 
+  const { addOrder, orderItems } = useAuth();
 
   useEffect(() => {
     async function fetchCategories() {
@@ -36,28 +38,10 @@ export function Home() {
     fetchDishes();
   }, [search, dishes]);
 
-  useEffect(() => {
-    if(order) {
-      const oldItems = JSON.parse(localStorage.getItem("@foodexplorer:order")) || [];
-      const existingDishIndex = oldItems ? oldItems.findIndex(dish => dish.dish_id === order.dish_id) : -1;
-      
-      const updatedOrder = [ ...oldItems ];
-
-      if(existingDishIndex !== -1) {
-        updatedOrder[existingDishIndex].quantityOrder += order.quantityOrder;
-      } else {
-        updatedOrder.push(order);
-      }
-
-      localStorage.setItem("@foodexplorer:order", JSON.stringify(updatedOrder));
-
-      setOrderItems(orderItems + order.quantityOrder);
-
-      setOrder();
-      alert("Prato(s) adicionado(s) ao pedido com sucesso");
-    }
-  }, [order, orderItems])
-
+  useEffect (() => {
+    addOrder()
+  }, [addOrder])
+  
   return(
     <Container>
       <Header
@@ -83,7 +67,6 @@ export function Home() {
                       <Card
                         key={String(dish.id)}
                         data={dish}
-                        setOrder={setOrder}
                       />
                     ) 
                   )
@@ -98,7 +81,7 @@ export function Home() {
             ))
             }
           </div>
-          <Carousel search={search} setOrder={setOrder} />
+          <Carousel search={search} />
       </div>
       <Footer className="footer" />
     </Container>

@@ -6,6 +6,8 @@ const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
   const [data, setData] = useState({});
+  const [orderItems, setOrderItems] = useState(0);
+  const [order, setOrder] = useState();
   
   async function signIn({ email, password }) {
 
@@ -33,8 +35,40 @@ function AuthProvider({ children }) {
   function signOut() {
     localStorage.removeItem("@foodexplorer:user");
     localStorage.removeItem("@foodexplorer:token");
+    localStorage.removeItem("@foodexplorer:order");
 
     setData({});
+  }
+
+  function addOrder() {
+      const oldItems = JSON.parse(localStorage.getItem("@foodexplorer:order")) || [];
+      let totalQuantity = 0;
+  
+      oldItems.forEach(item => {
+        totalQuantity += item.quantityOrder;
+      });
+  
+      setOrderItems(totalQuantity)
+  
+    if(order) {
+      const oldItems = JSON.parse(localStorage.getItem("@foodexplorer:order")) || [];
+      const existingDishIndex = oldItems ? oldItems.findIndex(dish => dish.dish_id === order.dish_id) : -1;
+      
+      const updatedOrder = [ ...oldItems ];
+
+      if(existingDishIndex !== -1) {
+        updatedOrder[existingDishIndex].quantityOrder += order.quantityOrder;
+      } else {
+        updatedOrder.push(order);
+      }
+
+      localStorage.setItem("@foodexplorer:order", JSON.stringify(updatedOrder));
+
+      setOrderItems(orderItems + order.quantityOrder);
+
+      setOrder();
+      alert("Prato(s) adicionado(s) ao pedido com sucesso");
+    }
   }
 
   useEffect(() => {
@@ -54,6 +88,10 @@ function AuthProvider({ children }) {
     <AuthContext.Provider value={{
       signIn,
       signOut,
+      addOrder,
+      order,
+      orderItems,
+      setOrder,
       user: data.user
       }}>
       { children }
