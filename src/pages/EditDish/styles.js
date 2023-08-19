@@ -12,6 +12,8 @@ export const Container = styled.div`
     display: grid;
     gap: 2.4rem;
 
+    position: relative;
+
     > a {
       color: ${({ theme }) => theme.colors.light_300};
       font-weight: 500;
@@ -223,11 +225,14 @@ export const Container = styled.div`
         }
 
         footer {
-          margin-bottom: 5rem;
+          /* margin-bottom: 5rem;
 
           position: absolute;
-          bottom: 10rem;
-          right: clamp(3rem, 18%, 23rem);
+          bottom: 0;
+          right: 24rem; */
+
+          grid-row: 4;
+          grid-column: 5 / span 6;
         }
       }
 `

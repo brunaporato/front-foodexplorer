@@ -59,6 +59,7 @@ export const Container = styled.div`
         color: ${({ theme }) => theme.colors.light_300};
         font-weight: 500;
         font-size: 1.8rem;
+        margin-bottom: 2.4rem;
       }
 
       .cards {
@@ -95,6 +96,15 @@ export const Container = styled.div`
       display: none;
     }
   }
+
+  .noDishes {
+    padding: 5rem 1rem 5rem;
+    width: 100vw;
+    font-size: 1.4rem;
+    display: flex;
+    gap: .9rem;
+    align-items: center;
+ }
 
   @media (max-width: 370px) {
     .top {
@@ -158,11 +168,24 @@ export const Container = styled.div`
         .cards {
           overflow: hidden;
           gap: 0;
+
+          margin-bottom: 4.6rem;
         }
       }
 
       .desktop {
         display: inline;
+      }
+
+      .noDishes {
+        padding: 5rem 12rem 5rem;
+        width: 100vw;
+
+        display: flex;
+        gap: .9rem;
+        align-items: center;
+        
+        font-size: 1.6rem;
       }
 
       .mobile {

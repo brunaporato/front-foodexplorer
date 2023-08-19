@@ -9,6 +9,7 @@ import { Carousel } from "../../components/Carousel";
 import macaronPng from "../../assets/pngegg2.png"
 import { api } from "../../services/api";
 import { useState, useEffect } from "react";
+import { FiXCircle } from "react-icons/fi";
 
 
 export function Home() {
@@ -52,6 +53,7 @@ export function Home() {
 
       setOrderItems(orderItems + order.quantityOrder);
 
+      setOrder();
       alert("Prato(s) adicionado(s) ao pedido com sucesso");
     }
   }, [order, orderItems])
@@ -86,6 +88,11 @@ export function Home() {
                     ) 
                   )
                 }
+                {dishes
+                  .filter(d => d.category === category.name)
+                  .length === 0 && (
+                  <p className="noDishes"> <FiXCircle size={14} />Nenhum prato encontrado.</p>
+                )}
                 </div>
               </section>
             ))

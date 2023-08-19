@@ -8,7 +8,7 @@ export const Container = styled.div`
   justify-content: center;
   gap: 1.2rem;
 
-  width: fit-content;
+  width: 16.2rem;
   /* height: 29.2rem; */
   /* margin: 2.4rem 2.4rem 2.4rem 0; */
 
@@ -32,6 +32,8 @@ export const Container = styled.div`
     font-weight: 500;
 
     cursor: pointer;
+
+    text-align: center;
   }
 
   > span {
@@ -89,6 +91,8 @@ export const Container = styled.div`
   .desktop {
     display: none;
   }
+
+
 
   @media (min-width: 856px) {
     gap: 1.5rem;

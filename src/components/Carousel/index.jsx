@@ -1,7 +1,7 @@
 import { Container, Gradient } from "./styles"
 import { Card } from "../../components/Card";
 
-import { FiChevronRight } from "react-icons/fi";
+import { FiChevronRight, FiXCircle } from "react-icons/fi";
 
 
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
@@ -15,7 +15,7 @@ export function Carousel({search, setOrder}) {
   const [categories, setCategories] = useState([]);
   const [dish, setDish] = useState([]);
   
-  const useGap = dish.length < 4 ? true : false;
+  const useGap = dish.length <= 4 ? true : false;
   
 
   useEffect(() => {
@@ -40,49 +40,54 @@ export function Carousel({search, setOrder}) {
         <section className="meal desktop" key={String(category.id)}>
           <h2>{category.name}</h2>
           <div className="cards">
-          <Splide
-            aria-label={String(category.name)}
-            hasTrack={false}
-            options={{
-              rewind: true,
-              width: '100%',
-              perPage: 4,
-              gap: useGap ? '25rem' : '',
-              breakpoints: {
-                1489: {
-                  perPage: 3
+            <Splide
+              aria-label={String(category.name)}
+              hasTrack={false}
+              options={{
+                rewind: true,
+                width: '100%',
+                perPage: 4,
+                gap: useGap ? '25rem' : '',
+                breakpoints: {
+                  1489: {
+                    perPage: 3
+                  },
+                  1182: {
+                    perPage: 2
+                  },
+                  833: {
+                    perPage: 1
+                  }
                 },
-                1182: {
-                  perPage: 2
-                },
-                833: {
-                  perPage: 1
-                }
-              },
-            }}
-          >
-          <SplideTrack>
-          {
-            dish.filter(dish => dish.category == category.name).map((dish) => (
-              <SplideSlide key={String(dish.id)}>
-                <Card
-                  key={String(dish.id)}
-                  data={dish}
-                  setOrder={setOrder}
-                />
-              </SplideSlide>
-              ) 
-            )
-          }
-          </SplideTrack>
-          <div className="splide__arrows">
-            <button className="splide__arrow splide__arrow--prev">
-              <FiChevronRight />
-            </button>
-            <button className="splide__arrow splide__arrow--next">
-              <FiChevronRight />
-            </button>
-          </div>
+              }}
+            >
+            <SplideTrack>
+            {
+              dish.filter(dish => dish.category == category.name).map((dish) => (
+                <SplideSlide key={String(dish.id)} >
+                  <Card
+                    key={String(dish.id)}
+                    data={dish}
+                    setOrder={setOrder}
+                  />
+                </SplideSlide>
+                ) 
+              )
+            }
+            {dish
+              .filter(d => d.category === category.name)
+              .length === 0 && (
+              <p className="noDishes"> <FiXCircle size={18} />Nenhum prato encontrado.</p>
+            )}
+            </SplideTrack>
+            <div className="splide__arrows">
+              <button className="splide__arrow splide__arrow--prev">
+                <FiChevronRight />
+              </button>
+              <button className="splide__arrow splide__arrow--next">
+                <FiChevronRight />
+              </button>
+            </div>
           </Splide>
           <Gradient className="left" />
           <Gradient className="right" />

@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    
+
+  .cards {
+    height: 46rem;
+  }
   .splide__arrow {
     width: 10%;
     font-size: 40px;
@@ -26,6 +29,8 @@ export const Container = styled.div`
   .splide:not(.is-overflow) .splide__arrows {
     display: none;
   }
+
+
 `
 
 export const Gradient = styled.div`
