@@ -37,6 +37,11 @@ export const Container = styled.div`
     > h2 {
       display: none;
     }
+
+    p {
+      color: ${({ theme }) => theme.colors.tomato_300};
+      font-size: 1.2rem;
+    }
   }
 
   .input-wrapper {
@@ -82,5 +87,7 @@ export const Container = styled.div`
         font-size: 3.2rem;
         font-weight: 500;
       }
+    }
+  }
 
 `

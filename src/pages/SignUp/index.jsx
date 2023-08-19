@@ -13,11 +13,21 @@ export function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showValidation, setShowValidation] = useState(false);
+  const [isValidEmail, setIsValidEmail] = useState(true);
 
   const navigate = useNavigate();
 
+  const handleValidation = () => {
+    setShowValidation(true);
+  }
+
   function handleSignUp() {
-    if(!name || !email || !password) {
+    if(!isValidEmail) {
+      return;
+    } else if(password.length < 6 || !password) {
+     return handleValidation();
+    } else if(!name || !email || !password) {
      return alert("Preencha todos os campos");
     }
 
@@ -33,6 +43,24 @@ export function SignUp() {
         alert("Não foi possível cadastrar")
       }
     });
+  }
+
+  function handleOnChangePassword(e) {
+    setPassword(e.target.value);
+    setShowValidation(false);
+  }
+
+  function handleOnChangeEmail(e) {
+    setEmail(e.target.value);
+    setIsValidEmail(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email));
+  }
+
+  function handlePressEnter(e) {
+    if(e.key === 'Enter' && password.length >= 6) {
+      handleSignUp()
+    } else if(e.key === 'Enter') {
+      handleValidation()
+    }
   }
 
   return (
@@ -58,8 +86,11 @@ export function SignUp() {
               id="email"
               placeholder="exemplo@exemplo.com.br"
               type="email"
-              onChange={e => setEmail(e.target.value)}
+              onChange={handleOnChangeEmail}
             />
+            {isValidEmail ? null :
+              <p>* digite um email válido</p>
+            }
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Senha</label>
@@ -68,8 +99,12 @@ export function SignUp() {
               placeholder="Mínimo 6 caracteres"
               type="password"
               minLength={6}
-              onChange={e => setPassword(e.target.value)}
+              onChange={handleOnChangePassword}
+              onKeyDown={handlePressEnter}
             />
+            {showValidation && password.length < 6 && (
+              <p>* use no mínimo 6 caracteres</p>
+            )}
           </div>
           <Button type="button" title="Criar conta" onClick={handleSignUp} />
           <Link to="/">Já tenho uma conta</Link>

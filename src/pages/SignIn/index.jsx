@@ -19,6 +19,12 @@ export function SignIn() {
     signIn({ email, password });
   }
 
+  function handlePressEnter(e) {
+    if(e.key === 'Enter') {
+      handleSignIn()
+    }
+  }
+
   return (
     <Container>
       <div className="top">
@@ -43,9 +49,10 @@ export function SignIn() {
               placeholder="Insira sua senha"
               type="password"
               onChange={e => setPassword(e.target.value)}
+              onKeyDown={handlePressEnter}
             />
           </div>
-          <Button title="Entrar" onClick={handleSignIn}/>
+          <Button title="Entrar" onClick={handleSignIn} />
           <Link to="/register">Criar uma conta</Link>
       </form>
     </Container>
