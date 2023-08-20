@@ -2,8 +2,6 @@
 
 ![Food Explorer Logo](./src/assets/polygon.svg)
 
-A Food Explorer é uma aplicação de frontend voltada para pedidos e vendas de pratos em um e-commerce. Construída utilizando as tecnologias React, Vite, JavaScript, Styled Components e React Data Grid Table, ela oferece uma experiência intuitiva e interativa para os usuários ao explorarem e realizarem pedidos dos deliciosos pratos disponíveis.
-
 O Food Explorer é um projeto de um menu interativo para um restaurante feito de ponta a ponta, no frontend foram utilizadas diversas tecnologias como React, Vite, JavaScript, Styled Components. A aplicação oferece uma experiência intuitiva para os usuários.
 
 ## Acesso à Aplicação
