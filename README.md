@@ -2,7 +2,7 @@
 
 ![Food Explorer Logo](./src/assets/polygon.svg)
 
-O Food Explorer é um projeto de um menu interativo para um restaurante feito de ponta a ponta, no frontend foram utilizadas diversas tecnologias como React, Vite, JavaScript, Styled Components. A aplicação oferece uma experiência intuitiva para os usuários.
+O Food Explorer é um projeto completo que traz à vida um menu interativo para um restaurante, construído meticulosamente em todos os aspectos. No frontend, utilizamos uma combinação de tecnologias de ponta, como React, Vite, JavaScript e Styled Components. O resultado é uma aplicação que oferece uma experiência do usuário natural e instintiva, projetada para tornar a interação dos usuários uma jornada agradável e eficiente.
 
 ## Acesso à Aplicação
 
@@ -69,9 +69,9 @@ Obrigada por acessar a aplicação Food Explorer!
 Este projeto está licenciado sob a licença [MIT](https://opensource.org/licenses/MIT).
 
 
-## 🚀 About me
+## 🚀 Sobre mim
 
-I'm a web programmer...
+Eu sou uma entusiasta da tecnologia e apaixonada por programação. Meu objetivo é explorar o vasto mundo do desenvolvimento web e criar soluções inovadoras que impactem positivamente a vida das pessoas. Aprendo constantemente, busco desafios e estou sempre ansiosa para mergulhar em novos projetos emocionantes. Conectar pessoas e ideias através da tecnologia é o que me motiva a crescer como profissional e como pessoa.
 
 ## 🔗 Links
 
