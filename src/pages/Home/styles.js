@@ -167,8 +167,9 @@ export const Container = styled.div`
         }
         
         .cards {
-          /* overflow: hidden; */
+          overflow: hidden;
           gap: 0;
+          height: fit-content;
 
           margin-bottom: 4.6rem;
         }
