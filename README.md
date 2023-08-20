@@ -12,7 +12,7 @@ A aplicação está implantada em ambiente de produção e abaixo está o passo 
 
 ### Ambiente de Produção
 
-O ambiente de produção contém dados já inseridos e está disponível em: [https://food-explorer-prod.vercel.app/](https://food-explorer-prod.vercel.app/)
+O ambiente de produção contém dados já inseridos e está disponível em: [https://foodexplorermenu.netlify.app/](https://foodexplorermenu.netlify.app/)
 
 **Usuário Admin:**
 - Email: admin@email.com
